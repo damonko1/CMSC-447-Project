@@ -7,10 +7,24 @@
   <link rel="stylesheet" href="./admin.css" />
 </head>
 <body class="dashboard-page">
+  <div class="top-bar">
+    <div class="day-selector">
+      <button id="prevBtn" type="button">◀</button>
+      <span id="dayDisplay"></span>
+      <button id="nextBtn" type="button">▶</button>
+    </div>
+
+    <div class="right-section">
+      <img src="UMBCretrievers_JUSTHEAD-on-white-or-black.png" alt="UMBC logo" class="logo" />
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search students..." />
+      </div>
+      <button id="logout-btn" type="button">Log Out</button>
+    </div>
+  </div>
+
   <main id="admin-app">
-    <h1>ASC Admin Dashboard</h1>
-    <p>Admin.</p>
-    <button id="logout-btn" type="button">Log Out</button>
+    <div id="scheduleContainer" class="schedule-container"></div>
   </main>
 
   <script type="module" src="./dashboard.js"></script>

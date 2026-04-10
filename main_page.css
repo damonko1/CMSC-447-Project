@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #eef2f3, #dfe9f3);
+}
+
+/* Top Bar */
+.top-bar {
+    background: #111;
+    color: white;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Day selector */
+.day-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#dayDisplay {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.day-selector button {
+    background: #222;
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.day-selector button:hover {
+    background: #444;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Logo styling */
+.logo {
+    height: 40px;    
+    width: auto;        
+    object-fit: contain;
+}
+
+/* Search */
+.search-container input {
+    padding: 10px 12px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+/* Container */
+.schedule-container {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Student card */
+.student-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(236, 211, 89);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.student-row:hover {
+    transform: translateY(-2px); /*slight movement when hovered over*/
+}
+
+/* Name */
+.student-name {
+    font-size: 20px;
+    font-weight: 600;
+    width: 180px;
+}
+
+/* Shifts */
+.shifts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Individual shift */
+.shift {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: large;
+}
+
+/* Dropdown */
+.status-dropdown {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-weight: 600;
+    cursor: pointer;
+}

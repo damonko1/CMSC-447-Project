@@ -72,7 +72,7 @@ function renderDay(day) {
         const statusSelect = document.createElement("select");
         statusSelect.className = "status-dropdown";
 
-        const options = ["In Session", "Late", "Cancelled"];
+        const options = ["Not in Session", "Late", "In Session", "Cancelled"];
 
         options.forEach((option) => {
           const opt = document.createElement("option");
@@ -108,8 +108,9 @@ function renderDay(day) {
 
 function updateColor(select) {
   select.style.backgroundColor =
-    select.value === "In Session" ? "#d4edda" :
+    select.value === "Not in Session" ? "rgb(240, 251, 250)" :
     select.value === "Late" ? "#fff3cd" :
+    select.value === "In Session" ? "#d4edda":
     "#f8d7da";
 }
 

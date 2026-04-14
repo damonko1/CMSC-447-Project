@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let currentDayIndex = new Date().getDay();
+    let currentDayIndex = new Date().getDay();;
 
     const dayDisplay = document.getElementById("dayDisplay");
     const prevBtn = document.getElementById("prevBtn");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const statusSelect = document.createElement("select"); //HTML element that creates dropdown menus
                     statusSelect.className = "status-dropdown";
 
-                    const options = ["In Session", "Late", "Cancelled"];
+                    const options = ["Not in Session", "Late", "In Session", "Cancelled"];
 
                     options.forEach(option => {
                         const opt = document.createElement("option");
@@ -68,8 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     function updateColor(select) {
                         select.style.backgroundColor =
-                            select.value === "In Session" ? "#d4edda" :
+                            select.value === "Not in Session" ? "rgb(240, 251, 250)" :
                             select.value === "Late" ? "#fff3cd" :
+                            select.value === "In Session" ? "#d4edda":
                             "#f8d7da";
                     }
 

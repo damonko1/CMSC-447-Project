@@ -22,7 +22,7 @@ body {
 align-items-> horizontal centering*/
 
 .login-box {
-    background-color: black;
+    background: linear-gradient(to right, #eef2f3, #dfe9f3);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,9 +32,12 @@ align-items-> horizontal centering*/
     padding: 0;
     height: 60vh;
     width: 400px;
-    font-family: "Trebuchet MS", "Helvetica", Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
+    color: black;
     margin: 0;
+    border-radius: 15px;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .login-box button{
@@ -64,6 +67,7 @@ align-items-> horizontal centering*/
 body.dashboard-page {
     display: block;
     padding: 40px;
+    
 }
 
 #admin-app {

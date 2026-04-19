@@ -1,0 +1,2578 @@
+{
+  "courses": {
+    "BIOL101": {
+      "code": "BIOL 101",
+      "name": "Concepts of Biology",
+      "category": "Biology"
+    },
+    "BIOL140": {
+      "code": "BIOL 140",
+      "name": "Foundations of Biology: Ecology and Evolution",
+      "category": "Biology"
+    },
+    "BIOL141": {
+      "code": "BIOL 141",
+      "name": "Foundations of Biology: Cells, Energy and Organisms",
+      "category": "Biology"
+    },
+    "BIOL251": {
+      "code": "BIOL 251",
+      "name": "Human Anatomy and Physiology I",
+      "category": "Biology"
+    },
+    "BIOL273": {
+      "code": "BIOL 273",
+      "name": "Microbiology for Allied Health",
+      "category": "Biology"
+    },
+    "BIOL302": {
+      "code": "BIOL 302",
+      "name": "Molecular and General Genetics",
+      "category": "Biology"
+    },
+    "BIOL303": {
+      "code": "BIOL 303",
+      "name": "Cell Biology",
+      "category": "Biology"
+    },
+    "BIOL430": {
+      "code": "BIOL 430",
+      "name": "Biological Chemistry",
+      "category": "Biology"
+    },
+    "CHEM100": {
+      "code": "CHEM 100",
+      "name": "The Chemical World",
+      "category": "Chemistry"
+    },
+    "CHEM101": {
+      "code": "CHEM 101",
+      "name": "Principles of Chemistry I",
+      "category": "Chemistry"
+    },
+    "CHEM102": {
+      "code": "CHEM 102",
+      "name": "Principles of Chemistry II",
+      "category": "Chemistry"
+    },
+    "CHEM120": {
+      "code": "CHEM 120",
+      "name": "Introduction to General, Organic, and Biochemistry",
+      "category": "Chemistry"
+    },
+    "CHEM300": {
+      "code": "CHEM 300",
+      "name": "Analytical Chemistry",
+      "category": "Chemistry"
+    },
+    "CHEM303": {
+      "code": "CHEM 303",
+      "name": "Physical Chemistry for the Biochemical Sciences",
+      "category": "Chemistry"
+    },
+    "CHEM351": {
+      "code": "CHEM 351",
+      "name": "Organic Chemistry I",
+      "category": "Chemistry"
+    },
+    "CHEM352": {
+      "code": "CHEM 352",
+      "name": "Organic Chemistry II",
+      "category": "Chemistry"
+    },
+    "CMPE212": {
+      "code": "CMPE 212",
+      "name": "Principles of Digital Design",
+      "category": "Computer Engineering"
+    },
+    "CMPE306": {
+      "code": "CMPE 306",
+      "name": "Introductory Circuit Theory",
+      "category": "Computer Engineering"
+    },
+    "CMPE314": {
+      "code": "CMPE 314",
+      "name": "Principles of Electronic Circuits",
+      "category": "Computer Engineering"
+    },
+    "CMSC201": {
+      "code": "CMSC 201",
+      "name": "Computer Science I",
+      "category": "Computer Science"
+    },
+    "CMSC202": {
+      "code": "CMSC 202",
+      "name": "Computer Science II",
+      "category": "Computer Science"
+    },
+    "CMSC203": {
+      "code": "CMSC 203",
+      "name": "Discrete Structures",
+      "category": "Computer Science"
+    },
+    "CMSC313": {
+      "code": "CMSC 313",
+      "name": "Computer Organization and Assembly Language Programming",
+      "category": "Computer Science"
+    },
+    "CMSC341": {
+      "code": "CMSC 341",
+      "name": "Data Structures",
+      "category": "Computer Science"
+    },
+    "CMSC411": {
+      "code": "CMSC 411",
+      "name": "Computer Architecture",
+      "category": "Computer Science"
+    },
+    "CMSC421": {
+      "code": "CMSC 421",
+      "name": "Principles of Operating Systems",
+      "category": "Computer Science"
+    },
+    "CMSC426": {
+      "code": "CMSC 426",
+      "name": "Principles of Computer Security",
+      "category": "Computer Science"
+    },
+    "CMSC441": {
+      "code": "CMSC 441",
+      "name": "Design and Analysis of Algorithms",
+      "category": "Computer Science"
+    },
+    "CMSC471": {
+      "code": "CMSC 471",
+      "name": "Introduction to Artificial Intelligence",
+      "category": "Computer Science"
+    },
+    "ECON101": {
+      "code": "ECON 101",
+      "name": "Principles of Microeconomics",
+      "category": "Economics"
+    },
+    "ECON102": {
+      "code": "ECON 102",
+      "name": "Principles of Macroeconomics",
+      "category": "Economics"
+    },
+    "GES102": {
+      "code": "GES 102",
+      "name": "People, Place, and Environment: A Global Geographic Perspective",
+      "category": "Geographical and Environmental Systems"
+    },
+    "GES110": {
+      "code": "GES 110",
+      "name": "The Changing Earth: Climate, Ecosystems, Water, and Landscapes",
+      "category": "Geographical and Environmental Systems"
+    },
+    "GES120": {
+      "code": "GES 120",
+      "name": "Environmental Science and Conservation",
+      "category": "Geographical and Environmental Systems"
+    },
+    "GES286": {
+      "code": "GES 286",
+      "name": "Exploring the Environment: A Geo-Spatial Perspective",
+      "category": "Geographical and Environmental Systems"
+    },
+    "GES386": {
+      "code": "GES 386",
+      "name": "Introduction to Geographic Information Systems",
+      "category": "Geographical and Environmental Systems"
+    },
+    "GES488": {
+      "code": "GES 488",
+      "name": "Spatial Data Analysis and GIS Applications",
+      "category": "Geographical and Environmental Systems"
+    },
+    "IS147": {
+      "code": "IS 147",
+      "name": "Introduction to Computer Programming",
+      "category": "Information Systems"
+    },
+    "IS247": {
+      "code": "IS 247",
+      "name": "Computer Programming II",
+      "category": "Information Systems"
+    },
+    "IS300": {
+      "code": "IS 300",
+      "name": "Management Information Systems",
+      "category": "Information Systems"
+    },
+    "IS310": {
+      "code": "IS 310",
+      "name": "Software and Hardware Concepts",
+      "category": "Information Systems"
+    },
+    "IS451": {
+      "code": "IS 451",
+      "name": "Network Design and Management",
+      "category": "Information Systems"
+    },
+    "MATH104": {
+      "code": "MATH 104",
+      "name": "Quantitative Literacy",
+      "category": "Math"
+    },
+    "MATH106": {
+      "code": "MATH 106",
+      "name": "Algebra and Elementary Functions",
+      "category": "Math"
+    },
+    "MATH150": {
+      "code": "MATH 150",
+      "name": "Precalculus Mathematics",
+      "category": "Math"
+    },
+    "MATH151": {
+      "code": "MATH 151",
+      "name": "Calculus and Analytic Geometry I",
+      "category": "Math"
+    },
+    "MATH152": {
+      "code": "MATH 152",
+      "name": "Calculus and Analytic Geometry II",
+      "category": "Math"
+    },
+    "MATH155": {
+      "code": "MATH 155",
+      "name": "Applied Calculus",
+      "category": "Math"
+    },
+    "MATH215": {
+      "code": "MATH 215",
+      "name": "Applied Finite Mathematics",
+      "category": "Math"
+    },
+    "MATH251": {
+      "code": "MATH 251",
+      "name": "Multivariable Calculus",
+      "category": "Math"
+    },
+    "MATH300": {
+      "code": "MATH 300",
+      "name": "Introduction to Mathematical Reasoning",
+      "category": "Math"
+    },
+    "MATH301": {
+      "code": "MATH 301",
+      "name": "Introduction to Contemporary Mathematics",
+      "category": "Math"
+    },
+    "PHYS111": {
+      "code": "PHYS 111",
+      "name": "Basic Physics I",
+      "category": "Physics"
+    },
+    "PHYS112": {
+      "code": "PHYS 112",
+      "name": "Basic Physics II",
+      "category": "Physics"
+    },
+    "PHYS121": {
+      "code": "PHYS 121",
+      "name": "Introductory Physics I",
+      "category": "Physics"
+    },
+    "PHYS122": {
+      "code": "PHYS 122",
+      "name": "Introductory Physics II",
+      "category": "Physics"
+    },
+    "SCI100": {
+      "code": "SCI 100",
+      "name": "Science of Water; An Interdisciplinary Study",
+      "category": "Science"
+    },
+    "SPAN101": {
+      "code": "SPAN 101",
+      "name": "Elementary Spanish I",
+      "category": "Spanish"
+    },
+    "SPAN102": {
+      "code": "SPAN 102",
+      "name": "Elementary Spanish II",
+      "category": "Spanish"
+    },
+    "SPAN201": {
+      "code": "SPAN 201",
+      "name": "Intermediate Spanish I",
+      "category": "Spanish"
+    },
+    "SPAN202": {
+      "code": "SPAN 202",
+      "name": "Intermediate Spanish II",
+      "category": "Spanish"
+    },
+    "STAT121": {
+      "code": "STAT 121",
+      "name": "Introduction to Statistics for the Social Sciences",
+      "category": "Statistics"
+    },
+    "STAT350": {
+      "code": "STAT 350",
+      "name": "Statistics with Applications in the Biological Sciences",
+      "category": "Statistics"
+    },
+    "STAT351": {
+      "code": "STAT 351",
+      "name": "Applied Statistics for Business and Economics",
+      "category": "Statistics"
+    },
+    "STAT355": {
+      "code": "STAT 355",
+      "name": "Introduction to Probability and Statistics for Scientists and Engineers",
+      "category": "Statistics"
+    }
+  },
+  "tutors": {
+    "tutor001": {
+      "name": "Susanna",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "BIOL302",
+        "CHEM101",
+        "CHEM351",
+        "PHYS111"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1300",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "CHEM101",
+              "CHEM351",
+              "PHYS111"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor002": {
+      "name": "Angela",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "BIOL302",
+        "BIOL303",
+        "CHEM101",
+        "CHEM102",
+        "CHEM351"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1600",
+            "endTime": "1700",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "BIOL303",
+              "CHEM101",
+              "CHEM102",
+              "CHEM351"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1630",
+            "endTime": "1800",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "BIOL303",
+              "CHEM101",
+              "CHEM102",
+              "CHEM351"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor003": {
+      "name": "Shakib",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "BIOL302",
+        "MATH151",
+        "MATH155"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1200",
+            "endTime": "1400",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "MATH151",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1230",
+            "endTime": "1400",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "MATH151",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor004": {
+      "name": "Zoya",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "BIOL302",
+        "BIOL303",
+        "BIOL430"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1300",
+            "endTime": "1600",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "BIOL303",
+              "BIOL430"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1300",
+            "endTime": "1600",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "BIOL303",
+              "BIOL430"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor005": {
+      "name": "Tristan",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "BIOL302",
+        "BIOL303",
+        "CHEM351"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1130",
+            "endTime": "1300",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "BIOL303",
+              "CHEM351"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor006": {
+      "name": "Lillian",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "CHEM351"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1300",
+            "endTime": "1400",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "CHEM351"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor007": {
+      "name": "Avi",
+      "courses": [
+        "BIOL101",
+        "BIOL140",
+        "BIOL141",
+        "BIOL302",
+        "BIOL303",
+        "CHEM100",
+        "CHEM101",
+        "CHEM102",
+        "CHEM120",
+        "CHEM300",
+        "CHEM303",
+        "MATH104",
+        "MATH106",
+        "MATH150",
+        "MATH151",
+        "MATH155",
+        "MATH215",
+        "MATH300",
+        "MATH301",
+        "PHYS111",
+        "PHYS121",
+        "STAT121",
+        "STAT350",
+        "STAT351",
+        "STAT355"
+      ],
+      "schedule": {
+        "thursday": [
+          {
+            "startTime": "1300",
+            "endTime": "1600",
+            "courses": [
+              "BIOL101",
+              "BIOL140",
+              "BIOL141",
+              "BIOL302",
+              "BIOL303",
+              "CHEM100",
+              "CHEM101",
+              "CHEM102",
+              "CHEM120",
+              "CHEM300",
+              "CHEM303",
+              "MATH104",
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH155",
+              "MATH215",
+              "MATH300",
+              "MATH301",
+              "PHYS111",
+              "PHYS121",
+              "STAT121",
+              "STAT350",
+              "STAT351",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor008": {
+      "name": "Chelsea",
+      "courses": [
+        "BIOL251",
+        "BIOL273",
+        "MATH106",
+        "STAT121"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1230",
+            "endTime": "1330",
+            "courses": [
+              "BIOL251",
+              "BIOL273",
+              "MATH106",
+              "STAT121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor009": {
+      "name": "Moyo",
+      "courses": [
+        "BIOL251",
+        "BIOL273",
+        "CHEM120",
+        "STAT121"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "BIOL251",
+              "BIOL273",
+              "CHEM120",
+              "STAT121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "BIOL251",
+              "BIOL273",
+              "CHEM120",
+              "STAT121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor010": {
+      "name": "Iniya",
+      "courses": [
+        "CHEM101",
+        "CHEM102"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1300",
+            "endTime": "1430",
+            "courses": [
+              "CHEM101",
+              "CHEM102"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1600",
+            "endTime": "1700",
+            "courses": [
+              "CHEM101",
+              "CHEM102"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1200",
+            "courses": [
+              "CHEM101",
+              "CHEM102"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor011": {
+      "name": "Molemo",
+      "courses": [
+        "CHEM101",
+        "CHEM102",
+        "MATH151",
+        "MATH152",
+        "MATH251"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1200",
+            "endTime": "1400",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1300",
+            "endTime": "1400",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor012": {
+      "name": "Shayan",
+      "courses": [
+        "CHEM101",
+        "CHEM102",
+        "CHEM351",
+        "MATH151",
+        "MATH152"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1400",
+            "endTime": "1630",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "CHEM351",
+              "MATH151",
+              "MATH152"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1200",
+            "endTime": "1300",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "CHEM351",
+              "MATH151"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1300",
+            "endTime": "1400",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "CHEM351",
+              "MATH151",
+              "MATH152"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor013": {
+      "name": "Zach",
+      "courses": [
+        "CHEM101",
+        "CHEM102",
+        "MATH151",
+        "MATH152",
+        "PHYS111",
+        "PHYS121"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1500",
+            "endTime": "1700",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH151",
+              "MATH152",
+              "PHYS121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1530",
+            "endTime": "1700",
+            "courses": [
+              "PHYS111"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1500",
+            "endTime": "1700",
+            "courses": [
+              "MATH152"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1530",
+            "endTime": "1700",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1100",
+            "endTime": "1200",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor014": {
+      "name": "Himani",
+      "courses": [
+        "CHEM101",
+        "CHEM102",
+        "MATH151",
+        "PHYS111"
+      ],
+      "schedule": {
+        "thursday": [
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH151",
+              "PHYS111"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1200",
+            "endTime": "1300",
+            "courses": [
+              "CHEM101",
+              "CHEM102",
+              "MATH151",
+              "PHYS111"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor015": {
+      "name": "Theo",
+      "courses": [
+        "CHEM102",
+        "CHEM300",
+        "CHEM352"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1200",
+            "endTime": "1400",
+            "courses": [
+              "CHEM102",
+              "CHEM300",
+              "CHEM352"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor016": {
+      "name": "Aya",
+      "courses": [
+        "CHEM351",
+        "CHEM352"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1400",
+            "endTime": "1600",
+            "courses": [
+              "CHEM351",
+              "CHEM352"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1100",
+            "endTime": "1300",
+            "courses": [
+              "CHEM351",
+              "CHEM352"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor017": {
+      "name": "Karen",
+      "courses": [
+        "CHEM351",
+        "CHEM352",
+        "MATH151",
+        "MATH152",
+        "MATH155",
+        "STAT350"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1600",
+            "endTime": "1700",
+            "courses": [
+              "CHEM351",
+              "CHEM352",
+              "MATH151",
+              "MATH152",
+              "MATH155",
+              "STAT350"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1600",
+            "endTime": "1700",
+            "courses": [
+              "CHEM351",
+              "CHEM352",
+              "MATH151",
+              "MATH152",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "STAT350"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1130",
+            "endTime": "1330",
+            "courses": [
+              "CHEM351",
+              "CHEM352",
+              "MATH151",
+              "MATH152",
+              "MATH155",
+              "STAT350"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor018": {
+      "name": "Shrikant",
+      "courses": [
+        "CMPE212",
+        "CMSC201",
+        "CMSC202",
+        "CMSC203",
+        "CMSC341",
+        "MATH151",
+        "MATH152",
+        "PHYS111",
+        "PHYS121",
+        "PHYS122"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1300",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1100",
+            "endTime": "1200",
+            "courses": [
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1300",
+            "endTime": "1400",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1445",
+            "endTime": "1545",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1200",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1500",
+            "endTime": "1600",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1100",
+            "endTime": "1400",
+            "courses": [
+              "CMPE212",
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor019": {
+      "name": "Javan",
+      "courses": [
+        "CMPE212",
+        "CMPE306",
+        "CMSC201",
+        "CMSC202"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1300",
+            "endTime": "1600",
+            "courses": [
+              "CMPE212",
+              "CMPE306",
+              "CMSC201",
+              "CMSC202"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1300",
+            "endTime": "1600",
+            "courses": [
+              "CMPE212",
+              "CMPE306",
+              "CMSC201",
+              "CMSC202"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor020": {
+      "name": "Elvis",
+      "courses": [
+        "CMPE306",
+        "CMPE314"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1400",
+            "courses": [
+              "CMPE306",
+              "CMPE314"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1400",
+            "courses": [
+              "CMPE306",
+              "CMPE314"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor021": {
+      "name": "Ian",
+      "courses": [
+        "CMPE314",
+        "CMSC201",
+        "CMSC202",
+        "CMSC341",
+        "CMSC411",
+        "CMSC421",
+        "CMSC426"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "CMPE314",
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1130",
+            "endTime": "1400",
+            "courses": [
+              "CMPE314",
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "CMPE314",
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1130",
+            "endTime": "1400",
+            "courses": [
+              "CMPE314",
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor022": {
+      "name": "Kodi",
+      "courses": [
+        "CMSC201",
+        "CMSC202",
+        "CMSC203",
+        "MATH151",
+        "PHYS111",
+        "PHYS112",
+        "PHYS121",
+        "PHYS122"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1430",
+            "endTime": "1545",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1100",
+            "endTime": "1400",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "MATH151",
+              "PHYS111",
+              "PHYS112",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1300",
+            "endTime": "1400",
+            "courses": [
+              "MATH151",
+              "PHYS111",
+              "PHYS112",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "MATH151",
+              "PHYS111",
+              "PHYS112",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor023": {
+      "name": "Max A.",
+      "courses": [
+        "CMSC201",
+        "CMSC202",
+        "CMSC203",
+        "CMSC341"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1230",
+            "endTime": "1430",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1415",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1230",
+            "endTime": "1430",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1100",
+            "endTime": "1415",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor024": {
+      "name": "Kaila",
+      "courses": [
+        "CMSC201",
+        "CMSC202",
+        "CMSC203",
+        "CMSC313",
+        "CMSC341",
+        "CMSC471"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1230",
+            "endTime": "1600",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC313",
+              "CMSC341",
+              "CMSC471"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1230",
+            "endTime": "1600",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC313",
+              "CMSC341",
+              "CMSC471"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1100",
+            "endTime": "1400",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC203",
+              "CMSC313",
+              "CMSC341",
+              "CMSC471"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor025": {
+      "name": "Sina",
+      "courses": [
+        "CMSC201",
+        "CMSC202",
+        "CMSC341",
+        "CMSC411",
+        "CMSC421",
+        "CMSC426",
+        "CMSC441"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1430",
+            "endTime": "1700",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426",
+              "CMSC441"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1230",
+            "endTime": "1700",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426",
+              "CMSC441"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1230",
+            "endTime": "1700",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426",
+              "CMSC441"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1100",
+            "endTime": "1400",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC341",
+              "CMSC411",
+              "CMSC421",
+              "CMSC426",
+              "CMSC441"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor026": {
+      "name": "Lily",
+      "courses": [
+        "CMSC201",
+        "CMSC202"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1500",
+            "endTime": "1800",
+            "courses": [
+              "CMSC201",
+              "CMSC202"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1445",
+            "endTime": "1545",
+            "courses": [
+              "CMSC201",
+              "CMSC202"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor027": {
+      "name": "Kyle",
+      "courses": [
+        "CMSC201",
+        "CMSC202",
+        "CMSC341"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1700",
+            "endTime": "1800",
+            "courses": [
+              "CMSC201",
+              "CMSC202",
+              "CMSC341"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor028": {
+      "name": "Aren",
+      "courses": [
+        "CMSC201",
+        "CMSC203",
+        "MATH151",
+        "MATH152",
+        "MATH300",
+        "PHYS111",
+        "PHYS121"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "CMSC201",
+              "CMSC203"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1330",
+            "endTime": "1700",
+            "courses": [
+              "MATH151",
+              "MATH152",
+              "MATH300",
+              "PHYS111",
+              "PHYS121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "friday": [
+          {
+            "startTime": "1100",
+            "endTime": "1300",
+            "courses": [
+              "MATH151",
+              "MATH152",
+              "MATH300",
+              "PHYS111",
+              "PHYS121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor029": {
+      "name": "Max M.",
+      "courses": [
+        "CMSC203",
+        "CMSC313",
+        "CMSC421"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1200",
+            "endTime": "1500",
+            "courses": [
+              "CMSC203",
+              "CMSC313",
+              "CMSC421"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1230",
+            "endTime": "1500",
+            "courses": [
+              "CMSC203",
+              "CMSC313",
+              "CMSC421"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor030": {
+      "name": "Adamo",
+      "courses": [
+        "ECON101",
+        "ECON102",
+        "MATH155"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1430",
+            "endTime": "1600",
+            "courses": [
+              "ECON101",
+              "ECON102",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "ECON101",
+              "ECON102",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor031": {
+      "name": "Sophia",
+      "courses": [
+        "IS147",
+        "IS247",
+        "IS300",
+        "IS310"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1200",
+            "endTime": "1300",
+            "courses": [
+              "IS147",
+              "IS247",
+              "IS300",
+              "IS310"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "IS147",
+              "IS247",
+              "IS300",
+              "IS310"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1200",
+            "endTime": "1300",
+            "courses": [
+              "IS147",
+              "IS247",
+              "IS300",
+              "IS310"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "IS147",
+              "IS247",
+              "IS300",
+              "IS310"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor032": {
+      "name": "Akanksha",
+      "courses": [
+        "MATH106",
+        "MATH150",
+        "MATH151",
+        "MATH152",
+        "MATH251",
+        "MATH300",
+        "STAT355"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1200",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251",
+              "MATH300",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1500",
+            "endTime": "1630",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251",
+              "MATH300",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1300",
+            "endTime": "1400",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251",
+              "MATH300",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1500",
+            "endTime": "1700",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251",
+              "MATH300",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor033": {
+      "name": "Michael",
+      "courses": [
+        "MATH106",
+        "MATH150",
+        "MATH151",
+        "MATH152",
+        "MATH251"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1130",
+            "endTime": "1245",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1100",
+            "endTime": "1230",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1115",
+            "endTime": "1245",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor034": {
+      "name": "Ini",
+      "courses": [
+        "MATH106",
+        "MATH155",
+        "SCI100"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1300",
+            "endTime": "1430",
+            "courses": [
+              "MATH106",
+              "MATH155",
+              "SCI100"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1330",
+            "endTime": "1430",
+            "courses": [
+              "MATH106",
+              "MATH155",
+              "SCI100"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor035": {
+      "name": "Abe",
+      "courses": [
+        "MATH106",
+        "MATH151",
+        "MATH152",
+        "PHYS122"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1430",
+            "endTime": "1530",
+            "courses": [
+              "MATH106",
+              "MATH151",
+              "MATH152",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "tuesday": [
+          {
+            "startTime": "1400",
+            "endTime": "1500",
+            "courses": [
+              "MATH106",
+              "MATH151",
+              "MATH152",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1430",
+            "endTime": "1530",
+            "courses": [
+              "MATH106",
+              "MATH151",
+              "MATH152",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor036": {
+      "name": "Molly",
+      "courses": [
+        "MATH106",
+        "MATH151",
+        "MATH152",
+        "MATH251"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "MATH106",
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "MATH106",
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor037": {
+      "name": "Manav",
+      "courses": [
+        "MATH106",
+        "MATH150",
+        "MATH151",
+        "MATH155"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1130",
+            "endTime": "1330",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1130",
+            "endTime": "1300",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1130",
+            "endTime": "1230",
+            "courses": [
+              "MATH106",
+              "MATH150",
+              "MATH151",
+              "MATH155"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor038": {
+      "name": "O’Tega",
+      "courses": [
+        "MATH150",
+        "MATH151",
+        "MATH152",
+        "PHYS111",
+        "PHYS112",
+        "PHYS121",
+        "PHYS122",
+        "STAT121"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1230",
+            "endTime": "1400",
+            "courses": [
+              "STAT121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1230",
+            "endTime": "1400",
+            "courses": [
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS112",
+              "PHYS121",
+              "PHYS122"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1600",
+            "endTime": "1800",
+            "courses": [
+              "MATH150",
+              "MATH151",
+              "MATH152",
+              "PHYS111",
+              "PHYS112",
+              "PHYS121",
+              "PHYS122",
+              "STAT121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor039": {
+      "name": "Rania",
+      "courses": [
+        "MATH151",
+        "MATH152",
+        "MATH251"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1100",
+            "endTime": "1200",
+            "courses": [
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          },
+          {
+            "startTime": "1600",
+            "endTime": "1700",
+            "courses": [
+              "MATH151",
+              "MATH152",
+              "MATH251"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor040": {
+      "name": "Dani",
+      "courses": [
+        "MATH151",
+        "PHYS121",
+        "STAT350",
+        "STAT351",
+        "STAT355"
+      ],
+      "schedule": {
+        "monday": [
+          {
+            "startTime": "1400",
+            "endTime": "1600",
+            "courses": [
+              "MATH151",
+              "PHYS121",
+              "STAT350",
+              "STAT351",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "wednesday": [
+          {
+            "startTime": "1400",
+            "endTime": "1600",
+            "courses": [
+              "MATH151",
+              "PHYS121",
+              "STAT350",
+              "STAT351",
+              "STAT355"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor041": {
+      "name": "Chiara",
+      "courses": [
+        "SPAN101",
+        "SPAN102",
+        "SPAN201",
+        "SPAN202"
+      ],
+      "schedule": {
+        "thursday": [
+          {
+            "startTime": "1500",
+            "endTime": "1600",
+            "courses": [
+              "SPAN101",
+              "SPAN102",
+              "SPAN201",
+              "SPAN202"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor042": {
+      "name": "Joseph",
+      "courses": [
+        "STAT121"
+      ],
+      "schedule": {
+        "wednesday": [
+          {
+            "startTime": "1245",
+            "endTime": "1430",
+            "courses": [
+              "STAT121"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    }
+  },
+  "statusLog": {}
+}

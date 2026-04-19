@@ -1,14 +1,216 @@
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f2f2f2;
   color: #111;
-  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
-.page-wrap {
-  max-width: 1250px;
+.top-header {
+  background: #000;
+  border-bottom: 6px solid #f2b316;
+}
+
+.top-header-inner {
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 14px 18px 50px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.umbc-logo {
+  height: 70px;
+  object-fit: contain;
+}
+
+.top-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.top-links a {
+  color: #f2b316;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hero-banner {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("digital-background-umbc.png");
+    
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 60px 0;
+  min-height: 180px;
+}
+
+.hero-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-subtitle {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 58px;
+  font-weight: 700;
+  color: #f2b316;
+}
+
+.yellow-nav {
+  max-width: 1320px;
+  margin: 0 auto;
+  margin-top: -8px;
+  background: #f2b316;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+}
+
+.yellow-nav a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 16px 18px;
+  display: block;
+  text-align: center;
+}
+
+.page-layout {
+  max-width: 1320px;
+  margin: 28px auto 50px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 28px;
+}
+
+.sidebar-box {
+  background: #d9d9d9;
+  border-left: 18px solid #111;
+}
+
+.sidebar-box h2 {
+  margin: 0;
+  padding: 18px 18px 10px;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.sidebar-item {
+  display: block;
+  padding: 16px 18px;
+  color: #111;
+  text-decoration: none;
+  font-size: 18px;
+  border-top: 1px solid #c8c8c8;
+}
+
+.sidebar-item.parent {
+  font-weight: 700;
+  background: #cfcfcf;
+}
+
+.sidebar-sub {
+  background: #eeeeee;
+}
+
+.sidebar-sub-item {
+  padding: 14px 30px;
+  font-size: 18px;
+}
+
+.sidebar-item.active {
+  background: #bdbdbd;
+  font-weight: 700;
+}
+
+.main-content {
+  min-width: 0;
+}
+
+.page-title {
+  font-size: 64px;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+.welcome-box {
+  background: #ead9ab;
+  text-align: center;
+  padding: 36px 24px;
+  margin-bottom: 20px;
+}
+
+.welcome-box p {
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.welcome-title {
+  font-size: 22px;
+}
+
+.schedule-button {
+  display: inline-block;
+  margin-top: 18px;
+  background: #f2b316;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+.intro-text {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.intro-text p {
+  margin-bottom: 22px;
+}
+
+.intro-text a {
+  color: #006c76;
+  font-weight: 700;
+}
+
+.course-nav h2,
+.course-section h2 {
+  font-size: 32px;
+  margin: 42px 0 18px;
+}
+
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button-grid a {
+  background: #f2b316;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 14px 22px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .course-card {
@@ -19,8 +221,8 @@ body {
 .course-card summary {
   cursor: pointer;
   list-style: none;
-  padding: 22px 24px;
-  font-size: 1rem;
+  padding: 18px 20px;
+  font-size: 18px;
 }
 
 .course-card summary::-webkit-details-marker {
@@ -31,6 +233,7 @@ body {
   content: "▶";
   display: inline-block;
   margin-right: 12px;
+  font-size: 16px;
 }
 
 .course-card[open] summary {
@@ -45,25 +248,37 @@ body {
 .course-content {
   background: #f7f7f7;
   padding: 20px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #d8d8d8;
   border-top: none;
+}
+
+.session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .session-row {
   display: grid;
-  grid-template-columns: 180px 1fr auto;
+  grid-template-columns: 170px 1fr auto;
   gap: 16px;
   align-items: center;
   background: white;
   border: 1px solid #e2e2e2;
-  padding: 14px 16px;
-  margin-bottom: 10px;
+  padding: 12px 14px;
+}
+
+.session-tutor {
+  font-weight: 700;
 }
 
 .status {
+  display: inline-block;
   padding: 6px 12px;
   border-radius: 999px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .present {
@@ -74,4 +289,29 @@ body {
 .late {
   background: #fff0c2;
   color: #8a6800;
+}
+
+.not-present,
+.cancelled,
+.left-early {
+  background: #f7d7d7;
+  color: #991b1b;
+}
+
+@media (max-width: 1000px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .yellow-nav {
+    flex-wrap: wrap;
+  }
+
+  .page-title {
+    font-size: 48px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
 }

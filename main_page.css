@@ -28,7 +28,8 @@ body {
     font-weight: 600;
 }
 
-.day-selector button {
+.day-selector button,
+.logout-btn {
     background: #222;
     border: none;
     color: white;
@@ -39,8 +40,13 @@ body {
     transition: 0.2s;
 }
 
-.day-selector button:hover {
+.day-selector button:hover,
+.logout-btn:hover {
     background: #444;
+}
+
+.logout-btn {
+    font-size: 16px;
 }
 
 .right-section {

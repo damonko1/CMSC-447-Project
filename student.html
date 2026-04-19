@@ -7,76 +7,166 @@
   <link rel="stylesheet" href="student.css" />
 </head>
 <body>
-  <main class="page-wrap">
-    <h1>Drop-In Tutoring</h1>
-
-    <section class="welcome-box">
-      <p class="welcome-title"><strong>Welcome to the Spring 2026 semester!</strong></p>
-      <p>Tutoring will be available between Monday, February 9th, and Tuesday, May 12, 2026.</p>
-      <p>Wishing you a successful semester, and we look forward to seeing you!</p>
-
-      <a href="#" class="schedule-button">
-        Undergraduate Students – Schedule ASC Services Here
-      </a>
-    </section>
-
-    <section class="intro-text">
-      <p>
-        Drop-in tutoring (located in the Library) is recommended for students who have quick questions.
-        Students who would like more in-depth assistance should make a tutoring appointment.
-      </p>
-
-      <p>
-        Peer support for specific courses depends on resources available each semester.
-        Please visit our <a href="#">main tutoring page</a> to view other support options.
-      </p>
-
-      <p>
-        If you have any questions about drop-in tutoring, please email
-        <a href="mailto:tutoring@umbc.edu">tutoring@umbc.edu</a>.
-      </p>
-    </section>
-
-    <section class="course-nav">
-      <h2>Available Courses</h2>
-      <div class="button-grid">
-        <a href="#biology">Biology</a>
-        <a href="#chemistry">Chemistry</a>
-        <a href="#computer-science">Computer Science</a>
-        <a href="#math">Math</a>
+  <header class="top-header">
+    <div class="top-header-inner">
+      <div class="logo-wrap">
+        <img src="umbcLogo.png" alt="UMBC Logo" class="umbc-logo" />
       </div>
-    </section>
 
-    <section id="biology" class="course-section">
-      <h2>Biology Courses</h2>
-      <div id="biologyCourses"></div>
-      <details class="course-card">
-    <summary>BIOL 302 – Molecular and General Genetics</summary>
-    <div class="course-content">
-      <div class="session-row">
-        <span>Susanna</span>
-        <span>Monday | 11:00 a.m. - 1:00 p.m.</span>
-        <span class="status present">Present</span>
+      <div class="top-links">
+        <a href="#">APPLY</a>
+        <a href="#">myUMBC</a>
+        <a href="#">Directory</a>
       </div>
     </div>
-    </details>
-    </section>
+  </header>
 
-    <section id="chemistry" class="course-section">
-      <h2>Chemistry Courses</h2>
-      <div id="chemistryCourses"></div>
-    </section>
+  <section class="hero-banner">
+    <div class="hero-inner">
+      <p class="hero-subtitle">Division of Undergraduate Academic Affairs</p>
+      <h1 class="hero-title">Academic Success Center</h1>
+    </div>
+  </section>
 
-    <section id="computer-science" class="course-section">
-      <h2>Computer Science Courses</h2>
-      <div id="computerScienceCourses"></div>
-    </section>
+  <nav class="yellow-nav">
+    <a href="#">Academic Success Center</a>
+    <a href="#">Academic Policy</a>
+    <a href="#">Academic Learning Resources</a>
+    <a href="#">Academic Advocacy</a>
+  </nav>
 
-    <section id="math" class="course-section">
-      <h2>Math Courses</h2>
-      <div id="mathCourses"></div>
-    </section>
-  </main>
+  <main class="page-layout">
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <h2>Academic Learning Resources</h2>
+
+         <div class="sidebar-group">
+          <div class="sidebar-item parent">
+            Tutoring <span class="arrow">›</span>
+          </div>
+
+          <div class="sidebar-sub">
+            <div class="sidebar-sub-item">Appointment Tutoring</div>
+            <div class="sidebar-sub-item active">Drop-In Tutoring</div>
+            <div class="sidebar-sub-item">Writing Center</div>
+          </div>
+        </div>
+
+        <div class="sidebar-item">SI PASS</div>
+        <div class="sidebar-item">Student Resources</div>
+        <div class="sidebar-item">Academic Skills Meetings</div>
+        <div class="sidebar-item">Early Academic Alerts</div>
+      </div>
+    </aside>
+
+    <section class="main-content">
+      <h2 class="page-title">Drop-In Tutoring</h2>
+
+      <section class="welcome-box">
+        <p class="welcome-title"><strong>Welcome to the Spring 2026 semester!</strong></p>
+        <p>Tutoring will be available between Monday, February 9th, and Tuesday, May 12, 2026.</p>
+        <p>Wishing you a successful semester, and we look forward to seeing you!</p>
+
+        <a href="#" class="schedule-button">
+          Undergraduate Students – Schedule ASC Services Here
+        </a>
+      </section>
+
+      <section class="intro-text">
+        <p>
+          Drop-in tutoring (located in the Library) is recommended for students who have quick questions.
+          Students who would like more in-depth assistance should make a tutoring appointment.
+        </p>
+
+        <p>
+          Peer support for specific courses depends on resources available each semester. Looking for a different course?
+          Please visit our <a href="#">main tutoring page</a> to view other support options.
+        </p>
+
+        <p>
+          If you have any questions about drop-in tutoring, please email
+          <a href="mailto:tutoring@umbc.edu">tutoring@umbc.edu</a>.
+        </p>
+      </section>
+
+      <section class="course-nav">
+        <h2>Available Courses</h2>
+        <div class="button-grid">
+          <a href="#biology">Biology</a>
+          <a href="#chemistry">Chemistry</a>
+          <a href="#computer-engineering">Computer Engineering</a>
+          <a href="#computer-science">Computer Science</a>
+          <a href="#economics">Economics</a>
+          <a href="#ges">Geographical and Environmental Systems</a>
+          <a href="#information-systems">Information Systems</a>
+          <a href="#math">Math</a>
+          <a href="#physics">Physics</a>
+          <a href="#science">Science</a>
+          <a href="#spanish">Spanish</a>
+          <a href="#statistics">Statistics</a>
+        </div>
+      </section>
+
+      <section id="biology" class="course-section">
+        <h2>Biology Courses</h2>
+        <div id="biologyCourses"></div>
+      </section>
+
+      <section id="chemistry" class="course-section">
+        <h2>Chemistry Courses</h2>
+        <div id="chemistryCourses"></div>
+      </section>
+
+      <section id="computer-science" class="course-section">
+        <h2>Computer Engineering Courses</h2>
+        <div id="computerScienceCourses"></div>
+      </section>
+
+      <section id="computer-science" class="course-section">
+        <h2>Computer Science Courses</h2>
+        <div id="computerScienceCourses"></div>
+      </section>
+
+      <section id="economics" class="course-section">
+        <h2>Economics Courses</h2>
+        <div id="economicsCourses"></div>
+      </section>
+
+      <section id="ges" class="course-section">
+        <h2>Geographical and Environmental Systems</h2>
+        <div id="gesCourses"></div>
+      </section>
+
+      <section id="information-systems" class="course-section">
+        <h2>Information Systems Courses</h2>
+        <div id="informationSystemsCourses"></div>
+      </section>
+
+      <section id="math" class="course-section">
+        <h2>Math Courses</h2>
+        <div id="mathCourses"></div>
+      </section>
+
+      <section id="physics" class="course-section">
+        <h2>Physics Courses</h2>
+        <div id="physicsCourses"></div>
+      </section>
+
+      <section id="science" class="course-section">
+        <h2>Science Courses</h2>
+        <div id="scienceCourses"></div>
+      </section>
+
+      <section id="spanish" class="course-section">
+        <h2>Spanish Courses</h2>
+        <div id="spanishCourses"></div>
+      </section>
+
+      <section id="statistics" class="course-section">
+        <h2>Statistics Courses</h2>
+        <div id="statisticsCourses"></div>
+      </section>
+    </main>
 
   <script type="module" src="student.js"></script>
 </body>

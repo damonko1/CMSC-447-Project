@@ -1,6 +1,11 @@
+import { auth } from "./firebase-config.js";
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let currentDayIndex = new Date().getDay();;
+    let currentDayIndex = new Date().getDay();
 
     const dayDisplay = document.getElementById("dayDisplay");
     const prevBtn = document.getElementById("prevBtn");
@@ -8,11 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const scheduleContainer = document.getElementById("scheduleContainer");
     const searchInput = document.getElementById("searchInput");
 
-    dayDisplay.textContent = days[currentDayIndex];
-
     let scheduleData = {};
 
-    fetch('schedule.json')
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            window.location.href = "./login.html";
+            return;
+        }
+
+        dayDisplay.textContent = days[currentDayIndex];
+
+        fetch("schedule.json")
         .then(res => res.json())
         .then(data => {
             scheduleData = data;
@@ -22,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(err);
             scheduleContainer.innerHTML = "<p>Error loading data.</p>";
         });
+    });
 
     function renderDay(day) {
         scheduleContainer.innerHTML = "";

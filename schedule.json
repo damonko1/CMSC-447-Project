@@ -94,22 +94,6 @@
     }
   ],
 
-  "Thursday": [
-    {
-        "name": "Richard Bradley",
-        "shifts": [
-            {"time":"1:00 PM - 4:00 PM", "status": "On time"}
-        ]
-    },
-    {
-      "name": "Ashley Jones",
-      "shifts": [
-        {"time": "11:00 AM - 11:00 AM", "status": "On time"},
-        {"time": "3:00 PM - 4:00 PM", "status": "Late"}
-      ]
-    }
-  ],
-
   "Friday": [
     {
       "name": "Chuck Chaz",

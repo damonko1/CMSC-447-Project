@@ -1,3 +1,8 @@
+import { auth } from "./firebase-config.js";
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let currentDayIndex = new Date().getDay();
@@ -8,11 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const scheduleContainer = document.getElementById("scheduleContainer");
     const searchInput = document.getElementById("searchInput");
 
-    dayDisplay.textContent = days[currentDayIndex];
-
     let scheduleData = {};
 
-    fetch('schedule.json')
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            window.location.href = "./login.html";
+            return;
+        }
+
+        dayDisplay.textContent = days[currentDayIndex];
+
+        fetch("schedule.json")
         .then(res => res.json())
         .then(data => {
             scheduleData = data;
@@ -22,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(err);
             scheduleContainer.innerHTML = "<p>Error loading data.</p>";
         });
+    });
 
     function renderDay(day) {
         scheduleContainer.innerHTML = "";
@@ -52,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const statusSelect = document.createElement("select"); //HTML element that creates dropdown menus
                     statusSelect.className = "status-dropdown";
 
-                    const options = ["In Session", "Late", "Cancelled"];
+                    const options = ["Not in Session", "Late", "In Session", "Cancelled"];
 
                     options.forEach(option => {
                         const opt = document.createElement("option");
@@ -68,8 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     function updateColor(select) {
                         select.style.backgroundColor =
-                            select.value === "In Session" ? "#d4edda" :
+                            select.value === "Not in Session" ? "rgb(240, 251, 250)" :
                             select.value === "Late" ? "#fff3cd" :
+                            select.value === "In Session" ? "#d4edda":
                             "#f8d7da";
                     }
 

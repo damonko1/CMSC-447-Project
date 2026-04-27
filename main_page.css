@@ -28,7 +28,8 @@ body {
     font-weight: 600;
 }
 
-.day-selector button {
+.day-selector button,
+.logout-btn {
     background: #222;
     border: none;
     color: white;
@@ -39,8 +40,13 @@ body {
     transition: 0.2s;
 }
 
-.day-selector button:hover {
+.day-selector button:hover,
+.logout-btn:hover {
     background: #444;
+}
+
+.logout-btn {
+    font-size: 16px;
 }
 
 .right-section {
@@ -109,6 +115,7 @@ body {
     align-items: center;
     gap: 20px;
     font-size: large;
+    flex-wrap: wrap;
 }
 
 /* Dropdown */
@@ -118,4 +125,132 @@ body {
     border: 1px solid #ccc;
     font-weight: 600;
     cursor: pointer;
+}
+
+.shift-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.persistence-chip {
+    display: inline-block;
+    background: #fff7d6;
+    color: #735500;
+    border: 1px solid #d9c46b;
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.clear-persistence-btn {
+    border: none;
+    border-radius: 999px;
+    background: #111;
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.clear-persistence-btn:hover {
+    background: #333;
+}
+
+.persistence-dialog {
+    width: min(440px, calc(100vw - 32px));
+    border: none;
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.persistence-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.persistence-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.persistence-form h2 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.persistence-description,
+.persistence-help {
+    margin: 0;
+    color: #444;
+    line-height: 1.5;
+}
+
+.persistence-options {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.persistence-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.persistence-date-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.persistence-date-field input {
+    border: 1px solid #c9c9c9;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+}
+
+.persistence-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.primary-btn,
+.secondary-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: #f2b316;
+    color: #111;
+}
+
+.secondary-btn {
+    background: #e5e5e5;
+    color: #111;
+}
+
+.primary-btn:hover {
+    background: #d99f13;
+}
+
+.secondary-btn:hover {
+    background: #d3d3d3;
 }

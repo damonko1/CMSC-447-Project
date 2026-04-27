@@ -130,11 +130,15 @@ body {
 }
 
 .sidebar-sub-item {
+  display: block;
   padding: 14px 30px;
+  color: #111;
+  text-decoration: none;
   font-size: 18px;
 }
 
-.sidebar-item.active {
+.sidebar-item.active,
+.sidebar-sub-item.active {
   background: #bdbdbd;
   font-weight: 700;
 }
@@ -197,6 +201,32 @@ body {
   margin: 42px 0 18px;
 }
 
+.course-search {
+  margin: 8px 0 24px;
+}
+
+.course-search label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.course-search input {
+  width: min(620px, 100%);
+  padding: 14px 16px;
+  border: 1px solid #cfcfcf;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 16px;
+}
+
+.student-search-feedback {
+  margin: 12px 0 0;
+  font-size: 16px;
+  color: #555;
+}
+
 .button-grid {
   display: flex;
   flex-wrap: wrap;
@@ -221,8 +251,10 @@ body {
 .course-card summary {
   cursor: pointer;
   list-style: none;
+  color: #111;
   padding: 18px 20px;
   font-size: 18px;
+  font-weight: 400;
 }
 
 .course-card summary::-webkit-details-marker {
@@ -237,8 +269,8 @@ body {
 }
 
 .course-card[open] summary {
-  background: #2b78b8;
-  color: white;
+  background: #f2b316;
+  color: #111;
 }
 
 .course-card[open] summary::before {
@@ -250,6 +282,14 @@ body {
   padding: 20px;
   border: 1px solid #d8d8d8;
   border-top: none;
+}
+
+.section-message {
+  margin: 0 0 18px;
+  background: white;
+  border: 1px solid #e2e2e2;
+  padding: 16px 18px;
+  font-size: 16px;
 }
 
 .session-list {
@@ -291,11 +331,21 @@ body {
   color: #8a6800;
 }
 
-.not-present,
+.notinsession {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
 .cancelled,
+.not-present,
 .left-early {
   background: #f7d7d7;
   color: #991b1b;
+}
+
+.status-unknown {
+  background: #e5e7eb;
+  color: #374151;
 }
 
 @media (max-width: 1000px) {
@@ -313,5 +363,12 @@ body {
 
   .hero-title {
     font-size: 42px;
+  }
+}
+
+@media (max-width: 700px) {
+  .session-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }

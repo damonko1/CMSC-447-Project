@@ -15,7 +15,7 @@
 
       <div class="top-links">
         <a href="https://umbc.edu/apply/">APPLY</a>
-        <a href="https://umbc.edu/">myUMBC</a>
+        <a href="https://my.umbc.edu">myUMBC</a>
         <a href="https://www2.umbc.edu/search/directory/">Directory</a>
       </div>
     </div>
@@ -41,14 +41,14 @@
         <h2>Academic Learning Resources</h2>
 
          <div class="sidebar-group">
-          <div class="sidebar-item parent">
+          <a href="https://academicsuccess.umbc.edu/tutoring/" class="sidebar-item parent">
             Tutoring <span class="arrow">›</span>
-          </div>
+          </a>
 
           <div class="sidebar-sub">
-            <div class="sidebar-sub-item">Appointment Tutoring</div>
-            <div class="sidebar-sub-item active">Drop-In Tutoring</div>
-            <div class="sidebar-sub-item">Writing Center</div>
+            <a href="https://academicsuccess.umbc.edu/appointment-tutoring/" class="sidebar-sub-item">Appointment Tutoring</a>
+            <a href="https://academicsuccess.umbc.edu/drop-in-tutoring/" class="sidebar-sub-item active">Drop-In Tutoring</a>
+            <a href="https://academicsuccess.umbc.edu/writing-center/" class="sidebar-sub-item">Writing Center</a>
           </div>
         </div>
 
@@ -69,7 +69,7 @@
         <p>Tutoring will be available between Monday, February 9th, and Tuesday, May 12, 2026.</p>
         <p>Wishing you a successful semester, and we look forward to seeing you!</p>
 
-        <a href="#" class="schedule-button">
+        <a href="http://traccloud.go-redrock.com/umbc/" class="schedule-button">
           Undergraduate Students – Schedule ASC Services Here
         </a>
       </section>
@@ -77,12 +77,13 @@
       <section class="intro-text">
         <p>
           Drop-in tutoring (located in the Library) is recommended for students who have quick questions.
-          Students who would like more in-depth assistance should make a tutoring appointment.
+          Students who would like more in-depth assistance should make a
+          <a href="https://academicsuccess.umbc.edu/appointment-tutoring/">tutoring appointment</a>.
         </p>
 
         <p>
           Peer support for specific courses depends on resources available each semester. Looking for a different course?
-          Please visit our <a href="#">main tutoring page</a> to view other support options.
+          Please visit our <a href="https://academicsuccess.umbc.edu/tutoring/">main tutoring page</a> to view other support options.
         </p>
 
         <p>
@@ -92,6 +93,16 @@
       </section>
 
       <section class="course-nav">
+        <div class="course-search">
+          <label for="studentSearchInput">Search live schedule</label>
+          <input
+            id="studentSearchInput"
+            type="search"
+            placeholder="Search tutor name, course code, or course name"
+          />
+          <p id="studentSearchFeedback" class="student-search-feedback" hidden></p>
+        </div>
+
         <h2>Available Courses</h2>
         <div class="button-grid">
           <a href="#biology">Biology</a>
@@ -119,9 +130,9 @@
         <div id="chemistryCourses"></div>
       </section>
 
-      <section id="computer-science" class="course-section">
+      <section id="computer-engineering" class="course-section">
         <h2>Computer Engineering Courses</h2>
-        <div id="computerScienceCourses"></div>
+        <div id="computerEngineeringCourses"></div>
       </section>
 
       <section id="computer-science" class="course-section">

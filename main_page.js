@@ -1,5 +1,19 @@
 import { auth, db } from "./firebase-config.js";
 import {
+    days,
+    formatCourseCode,
+    formatDateKey,
+    formatDateLabel,
+    formatDayLabel,
+    formatStatusLabel,
+    formatTimeRange,
+    getFirstOccurrenceOnOrAfterDateKey,
+    getSessionStatusDetails,
+    getUpcomingDateForDayIndex,
+    normalizeDayKey,
+    normalizeStatus
+} from "./schedule-utils.js";
+import {
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -10,9 +24,6 @@ import {
     ref,
     update
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const validDayKeys = new Set(days.map((day) => day.toLowerCase()));
 
 const baseStatusOptions = [
     { value: "notinsession", label: "Not in Session" },
@@ -30,6 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const scheduleContainer = document.getElementById("scheduleContainer");
     const searchInput = document.getElementById("searchInput");
     const logoutBtn = document.getElementById("logoutBtn");
+    const persistenceDialog = document.getElementById("persistenceDialog");
+    const persistenceForm = document.getElementById("persistenceForm");
+    const persistenceDescription = document.getElementById("persistenceDescription");
+    const persistUntilInput = document.getElementById("persistUntilInput");
+    const persistenceCancelBtn = document.getElementById("persistenceCancelBtn");
+    const durationModeInputs = Array.from(document.querySelectorAll('input[name="durationMode"]'));
 
     const state = {
         currentUser: null,
@@ -37,8 +54,45 @@ document.addEventListener("DOMContentLoaded", () => {
         courseLookup: {},
         scheduleData: createEmptyScheduleData(),
         hasLoadedTutors: false,
-        unsubscribers: []
+        unsubscribers: [],
+        persistencePromptResolver: null
     };
+    const stopStatusRefresh = startStatusRefresh(() => {
+        rebuildScheduleData();
+    });
+
+    durationModeInputs.forEach((input) => {
+        input.addEventListener("change", updatePersistenceDateFieldState);
+    });
+
+    persistenceCancelBtn.addEventListener("click", () => {
+        resolvePersistencePrompt(null);
+    });
+
+    persistenceDialog.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        resolvePersistencePrompt(null);
+    });
+
+    persistenceForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const durationMode = getSelectedDurationMode();
+
+        if (durationMode === "multi") {
+            const persistUntil = persistUntilInput.value;
+
+            if (!persistUntil) {
+                persistUntilInput.focus();
+                return;
+            }
+
+            resolvePersistencePrompt({ mode: "multi", persistUntil });
+            return;
+        }
+
+        resolvePersistencePrompt({ mode: "single", persistUntil: "" });
+    });
 
     onAuthStateChanged(auth, (user) => {
         teardownSubscriptions();
@@ -65,6 +119,27 @@ document.addEventListener("DOMContentLoaded", () => {
             logoutBtn.disabled = false;
             window.alert("Unable to log out right now. Please try again.");
         }
+    });
+
+    prevBtn.addEventListener("click", () => {
+        currentDayIndex = (currentDayIndex - 1 + 7) % 7;
+        dayDisplay.textContent = days[currentDayIndex];
+        renderDay(days[currentDayIndex]);
+    });
+
+    nextBtn.addEventListener("click", () => {
+        currentDayIndex = (currentDayIndex + 1) % 7;
+        dayDisplay.textContent = days[currentDayIndex];
+        renderDay(days[currentDayIndex]);
+    });
+
+    searchInput.addEventListener("input", () => {
+        renderDay(days[currentDayIndex]);
+    });
+
+    window.addEventListener("beforeunload", () => {
+        teardownSubscriptions();
+        stopStatusRefresh();
     });
 
     function subscribeToLiveData() {
@@ -99,11 +174,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function teardownSubscriptions() {
+        resolvePersistencePrompt(null);
+
         state.unsubscribers.forEach((unsubscribe) => {
             if (typeof unsubscribe === "function") {
                 unsubscribe();
             }
         });
+
         state.unsubscribers = [];
     }
 
@@ -174,57 +252,171 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 updateColor(statusSelect);
 
+                const shiftMeta = document.createElement("div");
+                shiftMeta.className = "shift-meta";
+
                 const lastUpdatedSpan = document.createElement("span");
                 lastUpdatedSpan.textContent = formatLastUpdated(shift.lastUpdated);
                 lastUpdatedSpan.style.fontSize = "0.8rem";
                 lastUpdatedSpan.style.color = "#555";
+                shiftMeta.appendChild(lastUpdatedSpan);
+
+                let clearPersistenceBtn = null;
+
+                if (shift.hasVisiblePersistence) {
+                    const persistenceChip = document.createElement("span");
+                    persistenceChip.className = "persistence-chip";
+                    persistenceChip.textContent = `Persists until ${formatDateLabel(shift.persistUntil)}`;
+                    shiftMeta.appendChild(persistenceChip);
+
+                    clearPersistenceBtn = document.createElement("button");
+                    clearPersistenceBtn.type = "button";
+                    clearPersistenceBtn.className = "clear-persistence-btn";
+                    clearPersistenceBtn.textContent = "Clear Persistence";
+                    shiftMeta.appendChild(clearPersistenceBtn);
+
+                    clearPersistenceBtn.addEventListener("click", async () => {
+                        statusSelect.disabled = true;
+                        clearPersistenceBtn.disabled = true;
+
+                        try {
+                            const result = await clearTutorStatusOverride({
+                                tutorId: shift.tutorId,
+                                tutorName: shift.tutorName,
+                                schedule: state.rawTutors?.[shift.tutorId]?.schedule || {},
+                                day: shift.dayKey,
+                                sessionIndices: shift.sessionIndices,
+                                persistenceBatchUpdatedAt: shift.persistenceBatchUpdatedAt,
+                                persistUntil: shift.persistUntil,
+                                clearEntireBatch: shift.persistMultipleDays,
+                                adminUser: state.currentUser
+                            });
+
+                            applySessionPatchesToState(shift.tutorId, result.sessionPatches);
+                        } catch (error) {
+                            console.error(error);
+                            window.alert(getUpdateErrorMessage(error));
+                        } finally {
+                            statusSelect.disabled = false;
+
+                            if (clearPersistenceBtn) {
+                                clearPersistenceBtn.disabled = false;
+                            }
+                        }
+                    });
+                }
 
                 statusSelect.addEventListener("change", async () => {
-                    const previousStatus = shift.status;
-                    const previousStatuses = [...shift.sessionStatuses];
-                    const previousLastUpdated = shift.lastUpdated;
+                    const previousDisplayedStatus = shift.status;
                     const nextStatus = normalizeStatus(statusSelect.value);
 
-                    if (nextStatus === previousStatus) {
+                    if (nextStatus === previousDisplayedStatus) {
+                        updateColor(statusSelect);
+                        return;
+                    }
+
+                    if (nextStatus === "present") {
+                        statusSelect.disabled = true;
+
+                        if (clearPersistenceBtn) {
+                            clearPersistenceBtn.disabled = true;
+                        }
+
+                        try {
+                            if (shift.hasOverride || shift.hasVisiblePersistence) {
+                                const result = await clearTutorStatusOverride({
+                                    tutorId: shift.tutorId,
+                                    tutorName: shift.tutorName,
+                                    schedule: state.rawTutors?.[shift.tutorId]?.schedule || {},
+                                    day: shift.dayKey,
+                                    sessionIndices: shift.sessionIndices,
+                                    persistenceBatchUpdatedAt: shift.persistenceBatchUpdatedAt,
+                                    persistUntil: shift.persistUntil,
+                                    clearEntireBatch: shift.persistMultipleDays,
+                                    adminUser: state.currentUser
+                                });
+
+                                applySessionPatchesToState(shift.tutorId, result.sessionPatches);
+                            } else {
+                                rebuildScheduleData();
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            statusSelect.value = previousDisplayedStatus;
+                            updateColor(statusSelect);
+                            window.alert(getUpdateErrorMessage(error));
+                        } finally {
+                            statusSelect.disabled = false;
+
+                            if (clearPersistenceBtn) {
+                                clearPersistenceBtn.disabled = false;
+                            }
+                        }
+
+                        return;
+                    }
+
+                    const persistenceSelection = await promptForStatusDuration({
+                        tutorName: shift.tutorName,
+                        nextStatus,
+                        currentDayLabel: days[currentDayIndex],
+                        currentPersistUntil: shift.persistUntil,
+                        currentPersistMultipleDays: shift.persistMultipleDays
+                    });
+
+                    if (!persistenceSelection) {
+                        statusSelect.value = previousDisplayedStatus;
                         updateColor(statusSelect);
                         return;
                     }
 
                     statusSelect.disabled = true;
-                    updateColor(statusSelect);
+
+                    if (clearPersistenceBtn) {
+                        clearPersistenceBtn.disabled = true;
+                    }
 
                     try {
-                        const updatedAt = await updateTutorSessionStatus({
-                            tutorId: shift.tutorId,
-                            tutorName: shift.tutorName,
-                            day: shift.dayKey,
-                            sessionIndices: shift.sessionIndices,
-                            newStatus: nextStatus,
-                            previousStatuses,
-                            adminUser: state.currentUser
-                        });
+                        const result = persistenceSelection.mode === "multi"
+                            ? await updateTutorStatusWithPersistence({
+                                tutorId: shift.tutorId,
+                                tutorName: shift.tutorName,
+                                schedule: state.rawTutors?.[shift.tutorId]?.schedule || {},
+                                selectedDayIndex: currentDayIndex,
+                                newStatus: nextStatus,
+                                persistUntil: persistenceSelection.persistUntil,
+                                adminUser: state.currentUser
+                            })
+                            : await updateTutorSessionStatus({
+                                tutorId: shift.tutorId,
+                                tutorName: shift.tutorName,
+                                schedule: state.rawTutors?.[shift.tutorId]?.schedule || {},
+                                selectedDayIndex: currentDayIndex,
+                                day: shift.dayKey,
+                                sessionIndices: shift.sessionIndices,
+                                newStatus: nextStatus,
+                                previousStatuses: shift.sessionStatuses,
+                                adminUser: state.currentUser
+                            });
 
-                        shift.status = nextStatus;
-                        shift.sessionStatuses = shift.sessionIndices.map(() => nextStatus);
-                        shift.lastUpdated = updatedAt;
-                        lastUpdatedSpan.textContent = formatLastUpdated(updatedAt);
+                        applySessionPatchesToState(shift.tutorId, result.sessionPatches);
                     } catch (error) {
                         console.error(error);
-                        shift.status = previousStatus;
-                        shift.sessionStatuses = previousStatuses;
-                        shift.lastUpdated = previousLastUpdated;
-                        statusSelect.value = previousStatus;
+                        statusSelect.value = previousDisplayedStatus;
                         updateColor(statusSelect);
-                        lastUpdatedSpan.textContent = formatLastUpdated(previousLastUpdated);
                         window.alert(getUpdateErrorMessage(error));
                     } finally {
                         statusSelect.disabled = false;
+
+                        if (clearPersistenceBtn) {
+                            clearPersistenceBtn.disabled = false;
+                        }
                     }
                 });
 
                 shiftDiv.appendChild(timeSpan);
                 shiftDiv.appendChild(statusSelect);
-                shiftDiv.appendChild(lastUpdatedSpan);
+                shiftDiv.appendChild(shiftMeta);
                 shiftsDiv.appendChild(shiftDiv);
             });
 
@@ -234,23 +426,86 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    prevBtn.addEventListener("click", () => {
-        currentDayIndex = (currentDayIndex - 1 + 7) % 7;
-        dayDisplay.textContent = days[currentDayIndex];
-        renderDay(days[currentDayIndex]);
-    });
+    function applySessionPatchesToState(tutorId, sessionPatches) {
+        const tutor = state.rawTutors?.[tutorId];
 
-    nextBtn.addEventListener("click", () => {
-        currentDayIndex = (currentDayIndex + 1) % 7;
-        dayDisplay.textContent = days[currentDayIndex];
-        renderDay(days[currentDayIndex]);
-    });
+        if (!tutor?.schedule) {
+            rebuildScheduleData();
+            return;
+        }
 
-    searchInput.addEventListener("input", () => {
-        renderDay(days[currentDayIndex]);
-    });
+        sessionPatches.forEach(({ dayKey, sessionIndex, patch }) => {
+            const session = tutor.schedule?.[dayKey]?.[sessionIndex];
 
-    window.addEventListener("beforeunload", teardownSubscriptions);
+            if (!session) {
+                return;
+            }
+
+            Object.assign(session, patch);
+        });
+
+        rebuildScheduleData();
+    }
+
+    function promptForStatusDuration({
+        tutorName,
+        nextStatus,
+        currentDayLabel,
+        currentPersistUntil,
+        currentPersistMultipleDays
+    }) {
+        const dayStart = getUpcomingDateForDayIndex(currentDayIndex);
+        const minimumDateKey = dayStart ? formatDateKey(dayStart) : formatDateKey(new Date());
+
+        persistenceDescription.textContent = `${tutorName} is being marked as ${formatStatusLabel(nextStatus)} for ${currentDayLabel}.`;
+        persistUntilInput.min = minimumDateKey;
+
+        const shouldDefaultToMulti = currentPersistMultipleDays && Boolean(currentPersistUntil);
+        const initialDateValue = currentPersistUntil && currentPersistUntil >= minimumDateKey
+            ? currentPersistUntil
+            : minimumDateKey;
+
+        persistUntilInput.value = initialDateValue;
+        setSelectedDurationMode(shouldDefaultToMulti ? "multi" : "single");
+        updatePersistenceDateFieldState();
+
+        persistenceDialog.showModal();
+
+        return new Promise((resolve) => {
+            state.persistencePromptResolver = resolve;
+        });
+    }
+
+    function resolvePersistencePrompt(result) {
+        if (typeof state.persistencePromptResolver === "function") {
+            const resolver = state.persistencePromptResolver;
+            state.persistencePromptResolver = null;
+            resolver(result);
+        }
+
+        if (persistenceDialog.open) {
+            persistenceDialog.close();
+        }
+    }
+
+    function setSelectedDurationMode(mode) {
+        durationModeInputs.forEach((input) => {
+            input.checked = input.value === mode;
+        });
+    }
+
+    function getSelectedDurationMode() {
+        return durationModeInputs.find((input) => input.checked)?.value || "single";
+    }
+
+    function updatePersistenceDateFieldState() {
+        const isMultiDay = getSelectedDurationMode() === "multi";
+        persistUntilInput.disabled = !isMultiDay;
+
+        if (!isMultiDay) {
+            persistUntilInput.blur();
+        }
+    }
 });
 
 function createEmptyScheduleData() {
@@ -293,6 +548,10 @@ function buildScheduleData(tutors, courseLookup) {
                     const endTime = session?.endTime || "";
                     const sessionStatus = normalizeStatus(session?.status);
                     const sessionLastUpdated = Number(session?.lastUpdated) || 0;
+                    const statusDetails = getSessionStatusDetails({
+                        ...session,
+                        dayKey
+                    });
                     const existingShift = tutorRow.shifts.find(
                         (shift) => shift.startTime === startTime && shift.endTime === endTime
                     );
@@ -304,8 +563,15 @@ function buildScheduleData(tutors, courseLookup) {
                         existingShift.sessionStatuses.push(sessionStatus);
 
                         if (sessionLastUpdated > existingShift.lastUpdated) {
-                            existingShift.status = sessionStatus;
+                            existingShift.status = statusDetails.effectiveStatus;
                             existingShift.lastUpdated = sessionLastUpdated;
+                            existingShift.persistMultipleDays = statusDetails.persistMultipleDays;
+                            existingShift.persistFrom = statusDetails.persistFrom;
+                            existingShift.persistUntil = statusDetails.persistUntil;
+                            existingShift.hasVisiblePersistence = statusDetails.hasVisiblePersistence;
+                            existingShift.hasOverride = statusDetails.hasOverride;
+                            existingShift.overrideStatus = statusDetails.overrideStatus;
+                            existingShift.persistenceBatchUpdatedAt = sessionLastUpdated;
                         }
 
                         return;
@@ -320,10 +586,17 @@ function buildScheduleData(tutors, courseLookup) {
                         time: formatTimeRange(startTime, endTime),
                         courseIds: mergeCourseIds([], courseIds),
                         courseSummary: courseSummary.displayText,
-                        status: sessionStatus,
+                        status: statusDetails.effectiveStatus,
                         lastUpdated: sessionLastUpdated,
                         startTime,
-                        endTime
+                        endTime,
+                        persistMultipleDays: statusDetails.persistMultipleDays,
+                        persistFrom: statusDetails.persistFrom,
+                        persistUntil: statusDetails.persistUntil,
+                        hasVisiblePersistence: statusDetails.hasVisiblePersistence,
+                        hasOverride: statusDetails.hasOverride,
+                        overrideStatus: statusDetails.overrideStatus,
+                        persistenceBatchUpdatedAt: sessionLastUpdated
                     });
                 });
 
@@ -363,42 +636,6 @@ function mergeCourseIds(existingCourseIds, nextCourseIds) {
     return [...new Set([...(existingCourseIds || []), ...(nextCourseIds || [])].filter(Boolean))];
 }
 
-function normalizeDayKey(dayKey) {
-    const normalized = String(dayKey || "").trim().toLowerCase();
-    return validDayKeys.has(normalized) ? normalized : "";
-}
-
-function formatDayLabel(dayKey) {
-    if (!dayKey) {
-        return "";
-    }
-
-    return dayKey.charAt(0).toUpperCase() + dayKey.slice(1);
-}
-
-function formatCourseCode(courseId) {
-    return String(courseId || "").replace(/^([A-Za-z]+)(\d+)$/, "$1 $2");
-}
-
-function formatTimeRange(startTime, endTime) {
-    return `${formatTime(startTime)} - ${formatTime(endTime)}`;
-}
-
-function formatTime(rawTime) {
-    const timeString = String(rawTime || "").padStart(4, "0");
-
-    if (!/^\d{4}$/.test(timeString)) {
-        return rawTime || "Time TBD";
-    }
-
-    const hours24 = Number(timeString.slice(0, 2));
-    const minutes = timeString.slice(2);
-    const suffix = hours24 >= 12 ? "PM" : "AM";
-    const hours12 = hours24 % 12 || 12;
-
-    return `${hours12}:${minutes} ${suffix}`;
-}
-
 function formatLastUpdated(timestamp) {
     const numericTimestamp = Number(timestamp);
 
@@ -412,35 +649,6 @@ function formatLastUpdated(timestamp) {
     }).format(numericTimestamp)}`;
 }
 
-function normalizeStatus(status) {
-    const collapsed = String(status || "")
-        .trim()
-        .toLowerCase()
-        .replace(/[\s_-]+/g, "");
-
-    if (!collapsed) {
-        return "notinsession";
-    }
-
-    if (collapsed === "present" || collapsed === "insession" || collapsed === "ontime") {
-        return "present";
-    }
-
-    if (collapsed === "late") {
-        return "late";
-    }
-
-    if (collapsed === "cancelled" || collapsed === "canceled") {
-        return "cancelled";
-    }
-
-    if (collapsed === "notinsession" || collapsed === "notpresent" || collapsed === "absent") {
-        return "notinsession";
-    }
-
-    return collapsed;
-}
-
 function getStatusOptions(currentStatus) {
     const normalizedStatus = normalizeStatus(currentStatus);
 
@@ -449,28 +657,6 @@ function getStatusOptions(currentStatus) {
     }
 
     return [{ value: normalizedStatus, label: formatStatusLabel(normalizedStatus) }, ...baseStatusOptions];
-}
-
-function formatStatusLabel(status) {
-    const normalizedStatus = normalizeStatus(status);
-
-    if (normalizedStatus === "present") {
-        return "In Session";
-    }
-
-    if (normalizedStatus === "late") {
-        return "Late";
-    }
-
-    if (normalizedStatus === "cancelled") {
-        return "Cancelled";
-    }
-
-    if (normalizedStatus === "notinsession") {
-        return "Not in Session";
-    }
-
-    return normalizedStatus.replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function updateColor(select) {
@@ -506,6 +692,8 @@ function getUpdateErrorMessage(error) {
 async function updateTutorSessionStatus({
     tutorId,
     tutorName,
+    schedule,
+    selectedDayIndex,
     day,
     sessionIndices,
     newStatus,
@@ -515,13 +703,30 @@ async function updateTutorSessionStatus({
     const rootRef = ref(db);
     const now = Date.now();
     const updates = {};
+    const sessionPatches = [];
+    const targetDate = getUpcomingDateForDayIndex(selectedDayIndex);
+    const targetDateKey = targetDate ? formatDateKey(targetDate) : formatDateKey(new Date());
 
     (sessionIndices || []).forEach((sessionIndex, index) => {
         const previousStatus = previousStatuses?.[index] || previousStatuses?.[0] || "";
         const logId = push(child(rootRef, "statusLog")).key || `log${now}-${sessionIndex}-${index}`;
+        const patch = {
+            status: newStatus,
+            defaultStatus: "present",
+            lastUpdated: now,
+            persistMultipleDays: false,
+            persistFrom: targetDateKey,
+            persistUntil: targetDateKey
+        };
 
-        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/status`] = newStatus;
-        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/lastUpdated`] = now;
+        sessionPatches.push({ dayKey: day, sessionIndex, patch });
+
+        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/status`] = patch.status;
+        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/defaultStatus`] = patch.defaultStatus;
+        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/lastUpdated`] = patch.lastUpdated;
+        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/persistMultipleDays`] = false;
+        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/persistFrom`] = targetDateKey;
+        updates[`tutors/${tutorId}/schedule/${day}/${sessionIndex}/persistUntil`] = targetDateKey;
         updates[`statusLog/${logId}`] = {
             tutorId,
             tutorName,
@@ -529,11 +734,237 @@ async function updateTutorSessionStatus({
             sessionIndex,
             previousStatus,
             newStatus,
+            persistMultipleDays: false,
+            persistFrom: targetDateKey,
+            persistUntil: targetDateKey,
             updatedBy: adminUser?.email || adminUser?.uid || "unknown",
             timestamp: now
         };
     });
 
     await update(rootRef, updates);
-    return now;
+    return { updatedAt: now, sessionPatches };
+}
+
+async function updateTutorStatusWithPersistence({
+    tutorId,
+    tutorName,
+    schedule,
+    selectedDayIndex,
+    newStatus,
+    persistUntil,
+    adminUser
+}) {
+    const rootRef = ref(db);
+    const now = Date.now();
+    const updates = {};
+    const sessionPatches = [];
+    const rangeStartDate = getUpcomingDateForDayIndex(selectedDayIndex);
+    const rangeStartDateKey = rangeStartDate ? formatDateKey(rangeStartDate) : formatDateKey(new Date());
+
+    Object.entries(schedule || {}).forEach(([rawDayKey, sessions]) => {
+        const dayKey = normalizeDayKey(rawDayKey);
+
+        if (!dayKey || !Array.isArray(sessions)) {
+            return;
+        }
+
+        const persistFrom = getFirstOccurrenceOnOrAfterDateKey(dayKey, rangeStartDateKey);
+
+        if (!persistFrom || persistFrom > persistUntil) {
+            return;
+        }
+
+        sessions.forEach((session, sessionIndex) => {
+            const existingStatus = normalizeStatus(session?.status);
+            const logId = push(child(rootRef, "statusLog")).key || `persist${now}-${dayKey}-${sessionIndex}`;
+            const patch = {
+                status: newStatus,
+                defaultStatus: "present",
+                lastUpdated: now,
+                persistMultipleDays: true,
+                persistFrom,
+                persistUntil
+            };
+
+            sessionPatches.push({ dayKey, sessionIndex, patch });
+
+            updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/status`] = patch.status;
+            updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/defaultStatus`] = patch.defaultStatus;
+            updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/lastUpdated`] = patch.lastUpdated;
+            updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistMultipleDays`] = true;
+            updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistFrom`] = persistFrom;
+            updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistUntil`] = persistUntil;
+            updates[`statusLog/${logId}`] = {
+                tutorId,
+                tutorName,
+                day: dayKey,
+                sessionIndex,
+                previousStatus: existingStatus,
+                newStatus,
+                persistMultipleDays: true,
+                persistFrom,
+                persistUntil,
+                updatedBy: adminUser?.email || adminUser?.uid || "unknown",
+                timestamp: now
+            };
+        });
+    });
+
+    if (!sessionPatches.length) {
+        throw new Error("No scheduled sessions fall within the selected persistence range.");
+    }
+
+    await update(rootRef, updates);
+    return { updatedAt: now, sessionPatches };
+}
+
+async function clearTutorStatusOverride({
+    tutorId,
+    tutorName,
+    schedule,
+    day,
+    sessionIndices,
+    persistenceBatchUpdatedAt,
+    persistUntil,
+    clearEntireBatch,
+    adminUser
+}) {
+    const rootRef = ref(db);
+    const now = Date.now();
+    const updates = {};
+    const sessionPatches = [];
+
+    if (clearEntireBatch) {
+        Object.entries(schedule || {}).forEach(([rawDayKey, sessions]) => {
+            const dayKey = normalizeDayKey(rawDayKey);
+
+            if (!dayKey || !Array.isArray(sessions)) {
+                return;
+            }
+
+            sessions.forEach((session, sessionIndex) => {
+                const sessionLastUpdated = Number(session?.lastUpdated) || 0;
+
+                if (
+                    !session?.persistMultipleDays ||
+                    sessionLastUpdated !== persistenceBatchUpdatedAt ||
+                    String(session?.persistUntil || "") !== String(persistUntil || "") ||
+                    normalizeStatus(session?.status) === "present"
+                ) {
+                    return;
+                }
+
+                const logId = push(child(rootRef, "statusLog")).key || `clear${now}-${dayKey}-${sessionIndex}`;
+                const patch = {
+                    status: "present",
+                    defaultStatus: "present",
+                    lastUpdated: now,
+                    persistMultipleDays: false,
+                    persistFrom: "",
+                    persistUntil: ""
+                };
+
+                sessionPatches.push({ dayKey, sessionIndex, patch });
+
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/status`] = patch.status;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/defaultStatus`] = patch.defaultStatus;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/lastUpdated`] = patch.lastUpdated;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistMultipleDays`] = false;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistFrom`] = "";
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistUntil`] = "";
+                updates[`statusLog/${logId}`] = {
+                    tutorId,
+                    tutorName,
+                    day: dayKey,
+                    sessionIndex,
+                    previousStatus: normalizeStatus(session?.status),
+                    newStatus: "present",
+                    persistMultipleDays: false,
+                    persistFrom: "",
+                    persistUntil: "",
+                    clearedPersistence: true,
+                    updatedBy: adminUser?.email || adminUser?.uid || "unknown",
+                    timestamp: now
+                };
+            });
+        });
+    } else {
+        const dayKey = normalizeDayKey(day);
+        const daySessions = schedule?.[dayKey];
+
+        if (dayKey && Array.isArray(daySessions)) {
+            (sessionIndices || []).forEach((sessionIndex) => {
+                const session = daySessions?.[sessionIndex];
+
+                if (!session) {
+                    return;
+                }
+
+                const hasRangeOverride = String(session?.persistFrom || "") && String(session?.persistUntil || "");
+                const previousStatus = normalizeStatus(session?.status);
+
+                if (!hasRangeOverride && previousStatus === "present") {
+                    return;
+                }
+
+                const logId = push(child(rootRef, "statusLog")).key || `clear${now}-${dayKey}-${sessionIndex}`;
+                const patch = {
+                    status: "present",
+                    defaultStatus: "present",
+                    lastUpdated: now,
+                    persistMultipleDays: false,
+                    persistFrom: "",
+                    persistUntil: ""
+                };
+
+                sessionPatches.push({ dayKey, sessionIndex, patch });
+
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/status`] = patch.status;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/defaultStatus`] = patch.defaultStatus;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/lastUpdated`] = patch.lastUpdated;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistMultipleDays`] = false;
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistFrom`] = "";
+                updates[`tutors/${tutorId}/schedule/${dayKey}/${sessionIndex}/persistUntil`] = "";
+                updates[`statusLog/${logId}`] = {
+                    tutorId,
+                    tutorName,
+                    day: dayKey,
+                    sessionIndex,
+                    previousStatus,
+                    newStatus: "present",
+                    persistMultipleDays: false,
+                    persistFrom: "",
+                    persistUntil: "",
+                    clearedPersistence: true,
+                    updatedBy: adminUser?.email || adminUser?.uid || "unknown",
+                    timestamp: now
+                };
+            });
+        }
+    }
+
+    if (!sessionPatches.length) {
+        throw new Error("No active persistence window was found to clear.");
+    }
+
+    await update(rootRef, updates);
+    return { updatedAt: now, sessionPatches };
+}
+
+function startStatusRefresh(refreshFn) {
+    let intervalId = 0;
+    const timeoutDelay = Math.max(1000, 60000 - (Date.now() % 60000));
+    const timeoutId = window.setTimeout(() => {
+        refreshFn();
+        intervalId = window.setInterval(refreshFn, 60000);
+    }, timeoutDelay);
+
+    return () => {
+        window.clearTimeout(timeoutId);
+
+        if (intervalId) {
+            window.clearInterval(intervalId);
+        }
+    };
 }

@@ -18,12 +18,45 @@
         <div class="right-section">
             <img src="UMBCretrievers_JUSTHEAD-on-white-or-black.png" alt="logo" class="logo">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search students...">
+                <input type="text" id="searchInput" placeholder="Search tutors...">
             </div>
             <button id="logoutBtn" class="logout-btn" type="button">Log Out</button>
         </div>
     </div>
 
     <div id="scheduleContainer" class="schedule-container"></div>
+
+    <dialog id="persistenceDialog" class="persistence-dialog">
+        <form id="persistenceForm" class="persistence-form" method="dialog">
+            <h2>Status Duration</h2>
+            <p id="persistenceDescription" class="persistence-description"></p>
+
+            <fieldset class="persistence-options">
+                <label>
+                    <input type="radio" name="durationMode" value="single" checked>
+                    Apply only to this day
+                </label>
+
+                <label>
+                    <input type="radio" name="durationMode" value="multi">
+                    Keep this status for multiple days
+                </label>
+            </fieldset>
+
+            <label class="persistence-date-field" for="persistUntilInput">
+                Through date
+                <input type="date" id="persistUntilInput" name="persistUntil">
+            </label>
+
+            <p class="persistence-help">
+                Multi-day changes will apply to this tutor's scheduled sessions through the selected date.
+            </p>
+
+            <div class="persistence-actions">
+                <button type="button" id="persistenceCancelBtn" class="secondary-btn">Cancel</button>
+                <button type="submit" id="persistenceSaveBtn" class="primary-btn">Save</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>

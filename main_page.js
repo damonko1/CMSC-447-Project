@@ -309,6 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 statusSelect.addEventListener("change", async () => {
                     const previousDisplayedStatus = shift.status;
                     const nextStatus = normalizeStatus(statusSelect.value);
+                    const shouldPromptForPersistence = nextStatus === "cancelled";
 
                     if (nextStatus === previousDisplayedStatus) {
                         updateColor(statusSelect);
@@ -356,18 +357,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         return;
                     }
 
-                    const persistenceSelection = await promptForStatusDuration({
-                        tutorName: shift.tutorName,
-                        nextStatus,
-                        currentDayLabel: days[currentDayIndex],
-                        currentPersistUntil: shift.persistUntil,
-                        currentPersistMultipleDays: shift.persistMultipleDays
-                    });
+                    let persistenceSelection = { mode: "single", persistUntil: "" };
 
-                    if (!persistenceSelection) {
-                        statusSelect.value = previousDisplayedStatus;
-                        updateColor(statusSelect);
-                        return;
+                    if (shouldPromptForPersistence) {
+                        persistenceSelection = await promptForStatusDuration({
+                            tutorName: shift.tutorName,
+                            nextStatus,
+                            currentDayLabel: days[currentDayIndex],
+                            currentPersistUntil: shift.persistUntil,
+                            currentPersistMultipleDays: shift.persistMultipleDays
+                        });
+
+                        if (!persistenceSelection) {
+                            statusSelect.value = previousDisplayedStatus;
+                            updateColor(statusSelect);
+                            return;
+                        }
                     }
 
                     statusSelect.disabled = true;

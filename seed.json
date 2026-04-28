@@ -1984,6 +1984,53 @@
       }
     },
     "tutor031": {
+      "name": "Bridget",
+      "courses": [
+        "GES102",
+        "GES110",
+        "GES120",
+        "GES286",
+        "GES386",
+        "GES488"
+      ],
+      "schedule": {
+        "tuesday": [
+          {
+            "startTime": "1130",
+            "endTime": "1400",
+            "courses": [
+              "GES102",
+              "GES110",
+              "GES120",
+              "GES286",
+              "GES386",
+              "GES488"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ],
+        "thursday": [
+          {
+            "startTime": "1130",
+            "endTime": "1400",
+            "courses": [
+              "GES102",
+              "GES110",
+              "GES120",
+              "GES286",
+              "GES386",
+              "GES488"
+            ],
+            "status": "present",
+            "lastUpdated": 0,
+            "persistMultipleDays": false
+          }
+        ]
+      }
+    },
+    "tutor032": {
       "name": "Sophia",
       "courses": [
         "IS147",
@@ -2050,7 +2097,7 @@
         ]
       }
     },
-    "tutor032": {
+    "tutor033": {
       "name": "Akanksha",
       "courses": [
         "MATH106",
@@ -2136,7 +2183,7 @@
         ]
       }
     },
-    "tutor033": {
+    "tutor034": {
       "name": "Michael",
       "courses": [
         "MATH106",
@@ -2196,7 +2243,7 @@
         ]
       }
     },
-    "tutor034": {
+    "tutor035": {
       "name": "Ini",
       "courses": [
         "MATH106",
@@ -2234,7 +2281,7 @@
         ]
       }
     },
-    "tutor035": {
+    "tutor036": {
       "name": "Abe",
       "courses": [
         "MATH106",
@@ -2290,7 +2337,7 @@
         ]
       }
     },
-    "tutor036": {
+    "tutor037": {
       "name": "Molly",
       "courses": [
         "MATH106",
@@ -2331,7 +2378,7 @@
         ]
       }
     },
-    "tutor037": {
+    "tutor038": {
       "name": "Manav",
       "courses": [
         "MATH106",
@@ -2387,7 +2434,7 @@
         ]
       }
     },
-    "tutor038": {
+    "tutor039": {
       "name": "O’Tega",
       "courses": [
         "MATH150",
@@ -2405,23 +2452,14 @@
             "startTime": "1230",
             "endTime": "1400",
             "courses": [
-              "STAT121"
-            ],
-            "status": "present",
-            "lastUpdated": 0,
-            "persistMultipleDays": false
-          },
-          {
-            "startTime": "1230",
-            "endTime": "1400",
-            "courses": [
               "MATH150",
               "MATH151",
               "MATH152",
               "PHYS111",
               "PHYS112",
               "PHYS121",
-              "PHYS122"
+              "PHYS122",
+              "STAT121"
             ],
             "status": "present",
             "lastUpdated": 0,
@@ -2447,7 +2485,7 @@
         ]
       }
     },
-    "tutor039": {
+    "tutor040": {
       "name": "Rania",
       "courses": [
         "MATH151",
@@ -2483,7 +2521,7 @@
         ]
       }
     },
-    "tutor040": {
+    "tutor041": {
       "name": "Dani",
       "courses": [
         "MATH151",
@@ -2527,7 +2565,7 @@
         ]
       }
     },
-    "tutor041": {
+    "tutor042": {
       "name": "Chiara",
       "courses": [
         "SPAN101",
@@ -2553,7 +2591,7 @@
         ]
       }
     },
-    "tutor042": {
+    "tutor043": {
       "name": "Joseph",
       "courses": [
         "STAT121"

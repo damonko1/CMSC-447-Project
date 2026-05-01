@@ -263,16 +263,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let clearPersistenceBtn = null;
 
-                if (shift.hasVisiblePersistence) {
+                if (shift.hasOverride || shift.hasVisiblePersistence) {
                     const persistenceChip = document.createElement("span");
-                    persistenceChip.className = "persistence-chip";
-                    persistenceChip.textContent = `Persists until ${formatDateLabel(shift.persistUntil)}`;
-                    shiftMeta.appendChild(persistenceChip);
+                    if (shift.hasVisiblePersistence) {
+                        persistenceChip.className = "persistence-chip";
+                        persistenceChip.textContent = `Persists until ${formatDateLabel(shift.persistUntil)}`;
+                        shiftMeta.appendChild(persistenceChip);
+                    }
 
                     clearPersistenceBtn = document.createElement("button");
                     clearPersistenceBtn.type = "button";
                     clearPersistenceBtn.className = "clear-persistence-btn";
-                    clearPersistenceBtn.textContent = "Clear Persistence";
+                    clearPersistenceBtn.textContent = shift.hasVisiblePersistence ? "Clear Persistence" : "Reset Status";
                     shiftMeta.appendChild(clearPersistenceBtn);
 
                     clearPersistenceBtn.addEventListener("click", async () => {
@@ -313,47 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (nextStatus === previousDisplayedStatus) {
                         updateColor(statusSelect);
-                        return;
-                    }
-
-                    if (nextStatus === "present") {
-                        statusSelect.disabled = true;
-
-                        if (clearPersistenceBtn) {
-                            clearPersistenceBtn.disabled = true;
-                        }
-
-                        try {
-                            if (shift.hasOverride || shift.hasVisiblePersistence) {
-                                const result = await clearTutorStatusOverride({
-                                    tutorId: shift.tutorId,
-                                    tutorName: shift.tutorName,
-                                    schedule: state.rawTutors?.[shift.tutorId]?.schedule || {},
-                                    day: shift.dayKey,
-                                    sessionIndices: shift.sessionIndices,
-                                    persistenceBatchUpdatedAt: shift.persistenceBatchUpdatedAt,
-                                    persistUntil: shift.persistUntil,
-                                    clearEntireBatch: shift.persistMultipleDays,
-                                    adminUser: state.currentUser
-                                });
-
-                                applySessionPatchesToState(shift.tutorId, result.sessionPatches);
-                            } else {
-                                rebuildScheduleData();
-                            }
-                        } catch (error) {
-                            console.error(error);
-                            statusSelect.value = previousDisplayedStatus;
-                            updateColor(statusSelect);
-                            window.alert(getUpdateErrorMessage(error));
-                        } finally {
-                            statusSelect.disabled = false;
-
-                            if (clearPersistenceBtn) {
-                                clearPersistenceBtn.disabled = false;
-                            }
-                        }
-
                         return;
                     }
 

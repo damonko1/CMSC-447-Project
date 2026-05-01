@@ -244,14 +244,17 @@ export function getSessionStatusDetails(session, referenceDate = new Date()) {
   const persistence = getSessionPersistenceInfo(session, referenceDate);
   const baseStatus = getBaseSessionStatus(session, referenceDate);
   const isInTimeBlock = isSessionOccurringNow(session, referenceDate);
-  const hasRangeOverride = persistence.isActive && persistence.overrideStatus !== "present";
+  const hasRangeOverride = persistence.isActive;
   const hasOverride = hasRangeOverride || persistence.hasLegacyOverride;
   let effectiveStatus = baseStatus;
 
   if (hasOverride) {
-    if (persistence.overrideStatus === "late") {
-      effectiveStatus = isInTimeBlock ? "late" : baseStatus;
-    } else if (persistence.overrideStatus === "cancelled" || persistence.overrideStatus === "notinsession") {
+    if (
+      persistence.overrideStatus === "present" ||
+      persistence.overrideStatus === "late" ||
+      persistence.overrideStatus === "cancelled" ||
+      persistence.overrideStatus === "notinsession"
+    ) {
       effectiveStatus = persistence.overrideStatus;
     }
   }
@@ -264,7 +267,6 @@ export function getSessionStatusDetails(session, referenceDate = new Date()) {
     isInTimeBlock,
     hasVisiblePersistence: persistence.persistMultipleDays &&
       persistence.spansMultipleDates &&
-      persistence.overrideStatus !== "present" &&
       Boolean(persistence.upcomingOccurrenceDateKey) &&
       persistence.upcomingOccurrenceDateKey <= persistence.persistUntil
   };

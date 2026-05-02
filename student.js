@@ -192,6 +192,7 @@ function renderAllCategoriesWithMessage(message) {
   });
 }
 
+// Re-group tutor schedules by course for the student view and keep the latest status per tutor/time slot.
 function buildCourseSchedule(tutors, courseLookup) {
   const groupedSchedule = new Map(categoryConfigs.map(({ category }) => [category, new Map()]));
 
@@ -441,6 +442,7 @@ function buildCourseTitle(code, name) {
   return name ? `${code} - ${name}` : code;
 }
 
+// Map effective status values to the student-facing label and visual state.
 function getStatusDisplay(status) {
   const normalizedStatus = normalizeStatus(status);
 

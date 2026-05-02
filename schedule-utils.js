@@ -54,6 +54,7 @@ export function parseTimeToMinutes(rawTime) {
   return (hours24 * 60) + minutes;
 }
 
+// Collapse stored and UI status strings into the app's status values.
 export function normalizeStatus(status) {
   const collapsed = String(status || "")
     .trim()
@@ -194,6 +195,7 @@ export function getStoredDefaultStatus(session) {
   return currentStatus === "notinsession" ? "present" : currentStatus;
 }
 
+// Compute whether a stored override still applies to this session's next scheduled occurrence.
 export function getSessionPersistenceInfo(session, referenceDate = new Date()) {
   const dayKey = normalizeDayKey(session?.dayKey);
   const persistMultipleDays = Boolean(session?.persistMultipleDays);
@@ -240,6 +242,7 @@ export function getBaseSessionStatus(session, referenceDate = new Date()) {
   return isSessionOccurringNow(session, referenceDate) ? "present" : "notinsession";
 }
 
+// Derive the status shown in the UI from the clock plus any active override window.
 export function getSessionStatusDetails(session, referenceDate = new Date()) {
   const persistence = getSessionPersistenceInfo(session, referenceDate);
   const baseStatus = getBaseSessionStatus(session, referenceDate);

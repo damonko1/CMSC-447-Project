@@ -478,6 +478,7 @@ function createEmptyScheduleData() {
     return Object.fromEntries(days.map((day) => [day, []]));
 }
 
+// Merge raw session records into admin rows by tutor and time block, keeping the newest status data.
 function buildScheduleData(tutors, courseLookup) {
     const groupedByDay = createEmptyScheduleData();
     const rowsByDay = Object.fromEntries(days.map((day) => [day, new Map()]));
@@ -655,6 +656,7 @@ function getUpdateErrorMessage(error) {
     return "Unable to update status right now. Please try again.";
 }
 
+// Apply a single-day override to the selected session row(s) and record the change.
 async function updateTutorSessionStatus({
     tutorId,
     tutorName,
@@ -712,6 +714,7 @@ async function updateTutorSessionStatus({
     return { updatedAt: now, sessionPatches };
 }
 
+// Apply the same override to each scheduled occurrence through the inclusive end date.
 async function updateTutorStatusWithPersistence({
     tutorId,
     tutorName,
@@ -785,6 +788,7 @@ async function updateTutorStatusWithPersistence({
     return { updatedAt: now, sessionPatches };
 }
 
+// Remove manual overrides so the session falls back to the normal time-based rules.
 async function clearTutorStatusOverride({
     tutorId,
     tutorName,
@@ -918,6 +922,7 @@ async function clearTutorStatusOverride({
     return { updatedAt: now, sessionPatches };
 }
 
+// Re-render on minute boundaries so time-based statuses update without a full reload.
 function startStatusRefresh(refreshFn) {
     let intervalId = 0;
     const timeoutDelay = Math.max(1000, 60000 - (Date.now() % 60000));

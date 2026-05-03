@@ -29,12 +29,12 @@ align-items-> horizontal centering*/
     align-items: center;
     object-fit: cover;
     object-position: center;
-    gap: 15px;
+    gap: 2dvh;
     padding: 0;
-    height: 60vh;
-    width: 500px;
+    height: 60dvh;
+    width: 40dvw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+    font-size: clamp(12px, 1.5vw, 25px);
     margin: 0;
     border-radius: 15px;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.2);
@@ -43,29 +43,28 @@ align-items-> horizontal centering*/
 .login-box button{
     background-color: black; /* button color */
     color: white;             /* text color */
-    padding: 12px;              /* height of the button */
+    padding: 2dvh;              /* height of the button */
     border: none;               /* remove default border */
     cursor: pointer;            /* pointer on hover */
-    width: 200px;
+    width: 15dvw;
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 15px;
+    font-size: clamp(12px, 1.25vw, 20px);
 }
 
 .login-box form {
     display: flex;           /* stack inputs vertically */
     flex-direction: column;
     align-items: center;     
-    gap: 15px;               /* spacing between inputs/buttons */
+    gap: 2.5dvh;               /* spacing between inputs/buttons */
     margin: 0;               
     padding: 0;              
     width: 100%;             /*match login-box width */
 }
 
 .logo {
-    height: 70px;    
+    height: 15dvh;    
     width: auto;        
     object-fit: contain;
 }
-      

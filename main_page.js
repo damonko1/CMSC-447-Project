@@ -139,20 +139,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     prevBtn.addEventListener("click", () => {
-        currentDayIndex = (currentDayIndex - 1 + 7) % 7;
         currentDate.setDate(currentDate.getDate() - 1);
         currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
         dateText.textContent = formatDate(currentDate);
+        calendarInput.value = currentDate;
         renderDay(days[currentDayIndex]);
     });
 
     nextBtn.addEventListener("click", () => {
-        currentDayIndex = (currentDayIndex + 1) % 7;
         currentDate.setDate(currentDate.getDate() + 1);
         currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
         dateText.textContent = formatDate(currentDate);
+        calendarInput.value = currentDate;
         renderDay(days[currentDayIndex]);
     });
 
@@ -161,8 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     calendarInput.addEventListener("change", () => {
+        currentDate = new Date(calendarInput.value);
         const [year, month, day] = calendarInput.value.split("-").map(Number);
-        currentDate = new Date(year, month - 1, day);
+        currentDate = new Date(year, month - 1, day); // local time
         currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
         dateText.textContent = formatDate(currentDate);

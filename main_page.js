@@ -1,27 +1,70 @@
 document.addEventListener("DOMContentLoaded", () => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let currentDayIndex = new Date().getDay();;
-
+    
+    const dateText = document.getElementById("dateTxt");
     const dayDisplay = document.getElementById("dayDisplay");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const scheduleContainer = document.getElementById("scheduleContainer");
     const searchInput = document.getElementById("searchInput");
+    const dateBtn = document.getElementById("dateBtn");
+    const calendarPopup = document.getElementById("calendarPopup");
+    const calendarInput = document.getElementById("calendarInput");
 
     dayDisplay.textContent = days[currentDayIndex];
 
-    let scheduleData = {};
+    const storedData = localStorage.getItem("scheduleData");
 
-    fetch('schedule.json')
-        .then(res => res.json())
-        .then(data => {
-            scheduleData = data;
-            renderDay(days[currentDayIndex]);
-        })
-        .catch(err => {
-            console.error(err);
-            scheduleContainer.innerHTML = "<p>Error loading data.</p>";
+    function formatDate(date) {
+        return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric", 
+            year: "numeric"
         });
+    }
+    let currentDate = new Date();
+    dateText.textContent = formatDate(currentDate);
+
+
+    if (storedData){
+        scheduleData = JSON.parse(storedData);
+        renderDay(days[currentDayIndex]);
+    }
+
+    else{ 
+        fetch('schedule.json')
+            .then(res => res.json())
+            .then(data => {
+                scheduleData = data;
+                renderDay(days[currentDayIndex]);
+            })
+            .catch(err => {
+                console.error(err);
+                scheduleContainer.innerHTML = "<p>Error loading data.</p>";
+            });}
+    
+
+    function isCurrentTimeInShift(timeRange) { //for automatic status updating when in session
+        const [startStr, endStr] = timeRange.split(" - ");
+        function parseTime(str) {
+            const [time, modifier] = str.split(" ");
+            let [hours, minutes] = time.split(":").map(Number);
+
+            if (modifier === "PM" && hours !== 12) hours += 12;
+            if (modifier === "AM" && hours === 12) hours = 0;
+
+            const date = new Date();
+            date.setHours(hours, minutes, 0, 0);
+            return date;
+        }
+
+        const now = new Date();
+        const start = parseTime(startStr);
+        const end = parseTime(endStr);
+
+        return now >= start && now <= end;
+    }
 
     function renderDay(day) {
         scheduleContainer.innerHTML = "";
@@ -43,6 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 shiftsDiv.className = "shifts";
 
                 student.shifts.forEach(shift => {
+                    if (isCurrentTimeInShift(shift.time)) {
+                        shift.status = "In Session";
+                    }
                     const shiftDiv = document.createElement("div");
                     shiftDiv.className = "shift";
 
@@ -78,6 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     statusSelect.addEventListener("change", () => {
                         updateColor(statusSelect);
+                        shift.status = statusSelect.value;
+                        localStorage.setItem("scheduleData", JSON.stringify(scheduleData));
                     });
 
                     shiftDiv.appendChild(timeSpan);
@@ -93,18 +141,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     prevBtn.addEventListener("click", () => {
-        currentDayIndex = (currentDayIndex - 1 + 7) % 7;
+        currentDate.setDate(currentDate.getDate() - 1);
+        currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
+        dateText.textContent = formatDate(currentDate);
         renderDay(days[currentDayIndex]);
     });
 
     nextBtn.addEventListener("click", () => {
-        currentDayIndex = (currentDayIndex + 1) % 7;
+        currentDate.setDate(currentDate.getDate() + 1);
+        currentDayIndex = currentDate.getDay()
         dayDisplay.textContent = days[currentDayIndex];
+        dateText.textContent = formatDate(currentDate);
         renderDay(days[currentDayIndex]);
+    });
+
+    dateBtn.addEventListener("click", () => {
+        calendarPopup.classList.toggle("hidden");
+    });
+
+    calendarInput.addEventListener("change", () => {
+        currentDate = new Date(calendarInput.value);
+        currentDayIndex = currentDate.getDay();
+        dayDisplay.textContent = days[currentDayIndex];
+        dateText.textContent = formatDate(currentDate);
+        renderDay(days[currentDayIndex]);
+        calendarPopup.classList.add("hidden");
     });
 
     searchInput.addEventListener("input", () => {
         renderDay(days[currentDayIndex]);
     });
+
+    setInterval(() => {
+        renderDay(days[currentDayIndex]);
+    }, 60000); // every 60 seconds
 });

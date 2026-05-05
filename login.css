@@ -34,7 +34,7 @@ align-items-> horizontal centering*/
     height: 60dvh;
     width: 40dvw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: clamp(12px, 1.5vw, 25px);
+    font-size: clamp(17px, 1.5vw, 25px);
     margin: 0;
     border-radius: 15px;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.2);
@@ -65,6 +65,6 @@ align-items-> horizontal centering*/
 
 .logo {
     height: 15dvh;    
-    width: auto;        
+    width: clamp(50px, 200vw, 300px);        
     object-fit: contain;
 }

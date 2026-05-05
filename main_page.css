@@ -49,6 +49,24 @@ body {
     font-size: 16px;
 }
 
+#dateBtn {
+    display: flex;
+    align-items: left;
+    gap: 10px;
+    background: none;
+    font-size: 20px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 15px 12px;
+    position: relative; left: -225px;
+    cursor: pointer;
+}
+
+
+.dateTxt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .right-section {
     display: flex;
     align-items: center;

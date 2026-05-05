@@ -35,11 +35,15 @@ const baseStatusOptions = [
 document.addEventListener("DOMContentLoaded", () => {
     let currentDayIndex = new Date().getDay();
 
+    const dateText = document.getElementById("dateTxt");
     const dayDisplay = document.getElementById("dayDisplay");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const scheduleContainer = document.getElementById("scheduleContainer");
     const searchInput = document.getElementById("searchInput");
+    const dateBtn = document.getElementById("dateBtn");
+    const calendarPopup = document.getElementById("calendarPopup");
+    const calendarInput = document.getElementById("calendarInput");
     const logoutBtn = document.getElementById("logoutBtn");
     const persistenceDialog = document.getElementById("persistenceDialog");
     const persistenceForm = document.getElementById("persistenceForm");
@@ -60,6 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const stopStatusRefresh = startStatusRefresh(() => {
         rebuildScheduleData();
     });
+
+    dayDisplay.textContent = days[currentDayIndex];
+
+    function formatDate(date) {
+        return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        });
+    }
+
+    let currentDate = new Date();
+    dateText.textContent = formatDate(currentDate);
 
     durationModeInputs.forEach((input) => {
         input.addEventListener("change", updatePersistenceDateFieldState);
@@ -123,14 +140,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     prevBtn.addEventListener("click", () => {
         currentDayIndex = (currentDayIndex - 1 + 7) % 7;
+        currentDate.setDate(currentDate.getDate() - 1);
+        currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
+        dateText.textContent = formatDate(currentDate);
         renderDay(days[currentDayIndex]);
     });
 
     nextBtn.addEventListener("click", () => {
         currentDayIndex = (currentDayIndex + 1) % 7;
+        currentDate.setDate(currentDate.getDate() + 1);
+        currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
+        dateText.textContent = formatDate(currentDate);
         renderDay(days[currentDayIndex]);
+    });
+
+    dateBtn.addEventListener("click", () => {
+        calendarPopup.classList.toggle("hidden");
+    });
+
+    calendarInput.addEventListener("change", () => {
+        currentDate = new Date(calendarInput.value);
+        currentDayIndex = currentDate.getDay();
+        dayDisplay.textContent = days[currentDayIndex];
+        dateText.textContent = formatDate(currentDate);
+        renderDay(days[currentDayIndex]);
+        calendarPopup.classList.add("hidden");
     });
 
     searchInput.addEventListener("input", () => {

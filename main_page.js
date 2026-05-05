@@ -161,7 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     calendarInput.addEventListener("change", () => {
-        currentDate = new Date(calendarInput.value);
+        const [year, month, day] = calendarInput.value.split("-").map(Number);
+        currentDate = new Date(year, month - 1, day);
         currentDayIndex = currentDate.getDay();
         dayDisplay.textContent = days[currentDayIndex];
         dateText.textContent = formatDate(currentDate);
